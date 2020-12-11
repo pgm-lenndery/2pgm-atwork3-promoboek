@@ -1,0 +1,61 @@
+@import '../../scss/abstracts';
+
+.floatCard {
+    @include box('all');
+    
+    max-width: 45vw;
+    
+    &__head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        @include box('b');
+        
+        *:last-child {
+            margin-bottom: 0;
+        }
+    }
+    
+    &__body {
+        position: relative;
+        
+        &-overlay {
+            position: absolute;
+            top: 0px;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 1rem;
+            z-index: 10;
+            
+            p {
+                @include fontSub;
+                max-height: 0vh;
+                overflow: hidden;
+            }
+        }
+    }
+    
+    &:hover {
+        .floatCard__body-overlay{
+            transform: translateX(100%);
+            
+            p {
+                max-height: 100vh;
+                transition: none;
+            }
+        }
+        
+        .purpleRain {
+            &::before {
+                opacity: 0;
+            }
+            
+            img {filter: grayscale(0);}
+        }
+    }
+}

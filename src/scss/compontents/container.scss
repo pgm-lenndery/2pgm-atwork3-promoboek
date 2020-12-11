@@ -1,0 +1,27 @@
+@media (min-width: 576px) {
+    .container-fluid, .container-sm, .container-md, .container-lg, .container-xl {
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .container-fluid, .container-sm, .container-md, .container-lg, .container-xl {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .container-fluid, .container-sm, .container-md, .container-lg, .container-xl {
+        padding-left: 5rem;
+        padding-right: 5rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container-fluid, .container-sm, .container-md, .container-lg, .container-xl {
+        padding-left: 6rem;
+        padding-right: 6rem;
+    }
+}

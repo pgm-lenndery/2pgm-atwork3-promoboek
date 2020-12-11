@@ -1,0 +1,6 @@
+.container--works.hovering {
+    
+    .floatCard:not(:hover) {
+        filter: opacity(0.3);
+    }
+}

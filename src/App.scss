@@ -1,0 +1,12 @@
+* {
+    &, &:hover, &:focus, &:focus-within {
+        transition: all .3s ease;
+    }
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    color: white;
+}
