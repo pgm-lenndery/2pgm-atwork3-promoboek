@@ -1,6 +1,12 @@
+@import './scss/abstracts';
+
 * {
-    &, &:hover, &:focus, &:focus-within {
+    &, &:hover, &:focus, &:focus-within, &::after, &::before {
         transition: all .3s ease;
+    }
+    
+    &::selection {
+        background-color: $purple500;
     }
 }
 
@@ -9,4 +15,9 @@ html, body {
     padding: 0;
     background-color: black;
     color: white;
+}
+
+img {
+    user-select: none;
+    pointer-events: none;
 }

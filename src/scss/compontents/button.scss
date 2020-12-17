@@ -1,0 +1,9 @@
+.btn {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    color: inherit;
+    user-select: none;
+    
+    @include noFocus;
+}

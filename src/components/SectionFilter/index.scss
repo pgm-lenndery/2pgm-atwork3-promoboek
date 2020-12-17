@@ -1,0 +1,62 @@
+@import '../../scss/abstracts';
+
+.container--section-filter {
+    display: flex;
+    margin-bottom: 4rem;
+    @include box('y');
+}
+
+.sectionFilter {
+    background-color: black;
+    z-index: 90;
+    
+    &--float {
+        position: sticky;
+        top: 0px;
+    }
+    
+    &__label {
+        padding: 1rem 1rem 1rem 0;
+        @include textModern;
+        @include box('r');
+    }
+    
+    &__options {
+        display: flex;
+        padding: 0 0 0 2.4rem;
+        
+        .option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0;
+            
+            &__label {
+                position: relative;
+                padding: 1rem 0;
+                
+                &::after {
+                    background-color: transparent;
+                }
+            }
+            
+            &.checked {
+                .option__label::after {
+                    content: '';
+                    position: absolute;
+                    top: -2px;
+                    bottom: -2px;
+                    left: -1rem;
+                    right: -1rem;
+                    background-color: $purple500;
+                    mix-blend-mode: multiply;
+                }
+            }
+            
+            &__separator {margin: 0 2rem;}
+            
+            &:last-child .option__separator {
+                display: none;
+            }
+        }
+    }
+}
