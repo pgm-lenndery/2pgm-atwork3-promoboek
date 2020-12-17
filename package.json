@@ -8,8 +8,10 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-feather": "^2.0.9",
+    "react-masonry-css": "^1.0.14",
     "react-responsive-masonry": "^2.1.0",
     "react-scripts": "4.0.1",
+    "reactjs-popup": "^2.0.4",
     "web-vitals": "^0.2.4"
   },
   "scripts": {

@@ -33,6 +33,7 @@
 
 @mixin fontMain {
     font-family: rhode-wide,sans-serif;
+    text-transform: lowercase;
     // 500, 600, 700, 800
 }
 

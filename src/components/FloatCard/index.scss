@@ -29,8 +29,14 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 0 1rem;
+            padding: 0 2rem;
             z-index: 10;
+            
+            h2 {
+                hyphens: auto;
+                max-width: 60%;
+                @include fontMain;
+            }
             
             p {
                 @include fontSub;
@@ -41,7 +47,7 @@
     }
     
     &:hover {
-        .floatCard__body-overlay{
+        .floatCard__body-overlay {
             transform: translateX(100%);
             
             p {

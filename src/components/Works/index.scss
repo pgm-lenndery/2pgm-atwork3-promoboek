@@ -1,6 +1,41 @@
 .container--works.hovering {
-    
     .floatCard:not(:hover) {
         filter: opacity(0.3);
+    }
+}
+
+// .container--works {
+    
+// }
+
+
+.masonry {
+    display: flex;
+    width: auto;
+  
+    &__column {
+        margin-right: 4rem;
+        background-clip: padding-box;
+        
+        &:last-child {
+            margin-right: 0;
+        }
+        
+        > div {
+            margin-bottom: 4rem;
+        }
+    }
+}
+
+.masonry__column:last-child {
+    .floatCard:hover {
+        .floatCard__body-overlay {
+            align-items: flex-end;
+            transform: translateX(-100%);
+            
+            &, * {
+                text-align: right;
+            }
+        }
     }
 }
