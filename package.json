@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.5.3",
+    "faker": "^5.1.0",
     "node-sass": "^4.14.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -15,6 +16,7 @@
     "react-router-modal": "^2.0.0-rc3",
     "react-scripts": "4.0.1",
     "reactjs-popup": "^2.0.4",
+    "uuid": "^8.3.2",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
