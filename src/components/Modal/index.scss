@@ -1,0 +1,11 @@
+@import '../../scss/abstracts';
+
+.modal__box-content {
+    background-color: black;
+    
+    .modal__body {
+        padding: 4rem;
+    }
+    
+    @include box('all');
+}

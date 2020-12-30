@@ -3,7 +3,8 @@ import React, { useRef } from 'react';
 import { Container } from '..';
 import './index.scss';
 
-export default ({ label, float = false, options = [], onSelect, defaultChecked = null}) => {
+export default ({ label = 'label unset', float = false, items, onSelect, defaultChecked = null}) => {
+    if (!items)  throw new Error('items was not set for a SectionFilter component');
     if (!onSelect)  throw new Error('onSelect was not set for a SectionFilter component');
     
     /**
@@ -23,13 +24,13 @@ export default ({ label, float = false, options = [], onSelect, defaultChecked =
     }
     
     return (
-        <Container theme="section-filter" className={`sectionFilter ${ float && 'sectionFilter--float'}`} fluid>
+        <Container theme="section-filter" className={`sectionFilter ${ float && 'sectionFilter--float'} box`} fluid>
             <div className="sectionFilter__label">{ label }</div>
             <div className="sectionFilter__options" ref={group}>{
-                options.map(({ value, label, checked }, index) => {
+                items.map(({ value, label, checked }, index) => {
                     if (value == null && !label) throw new Error('One or more options in a SectionFilter have a value null, but no label')
                     
-                    return <button key={index} className={`sectionFilter__option option btn ${checked && 'checked'}`} onClick={(e) => handleClick(e, value)}>
+                    return <button key={index} className={`sectionFilter__option option btn ${checked && 'checked'}`} onClick={(e) => handleClick(e, value || label)}>
                         <div className="option__label">{ label || value }</div>
                         <div className="option__separator">・</div>
                     </button>

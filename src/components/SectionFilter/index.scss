@@ -19,6 +19,7 @@
         padding: 1rem 1rem 1rem 0;
         @include textModern;
         @include box('r');
+        user-select: none;
     }
     
     &__options {
@@ -43,8 +44,8 @@
                 .option__label::after {
                     content: '';
                     position: absolute;
-                    top: -2px;
-                    bottom: -2px;
+                    top: -6px;
+                    bottom: -6px;
                     left: -1rem;
                     right: -1rem;
                     background-color: $purple500;

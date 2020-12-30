@@ -1,11 +1,27 @@
 @import '../../scss/abstracts';
 
-.modal__box-content {
+.boxModal {
     background-color: black;
+    @include box('all');
     
-    .modal__body {
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        background-color: black;
+        @include box('all');
+        z-index: -1;
+        transform: translate(-2.3rem, 2.3rem);
+    }
+    
+    &__body {
         padding: 4rem;
     }
     
-    @include box('all');
+    &__actions {
+        
+    }
 }

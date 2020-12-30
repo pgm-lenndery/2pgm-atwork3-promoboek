@@ -1,0 +1,41 @@
+@import '../../scss/abstracts';
+
+.sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    @include box('y');
+    
+    &__title {
+        flex: 1;
+        padding: 1.5rem 0;
+        @include box('r');
+        
+        h2 {
+            margin-bottom: 0;
+            font-size: clamp(1rem, 4rem, 4rem);
+            line-height: 3.5rem;
+        }
+    }
+    
+    .action {
+        padding: 1.5rem 0;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        
+        &__label {
+            @include textModern;
+            font-size: calc(1.3rem + 0.6vw);
+        }
+        
+        &__icon svg {
+            width: 70px;
+            height: 70px;
+            
+            stroke-width: 1px;
+            stroke-linecap: butt;
+            stroke-linejoin: miter;
+        }
+    }
+}

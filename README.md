@@ -1,9 +1,27 @@
 ## Components
+### SectionFilter
+```jsx
+<SectionFilter label="filter projecten" items={ filterOptions } float={false} onSelect={option => console.log(option)}/>
+```
+
+#### Props
+|Propname|Value type|Required|Example syntax|Comment|
+|--------|----------|--------|--------------|-------|
+|label|string|yes|
+|items|object|yes|{ value: 'nl', label: 'Dutch'[, checked: true] }| Value is optional, but recommended|
+|float|boolean|no _(default: false)_| |Enable css float for this component|
+|onSelect|function|yes||Returns the selected option in a callback function|
+
+## Classes
 ### Box
 The box-class applies a white border to an element.
 
+```css
+.box
+```
+
 ```html
-<div class="card box">
+<div class="box">
     content
 </div>
 ```
@@ -16,3 +34,4 @@ Extra support classes are available
 - ```box--l``` (apply to __left__)
 - ```box--r``` (apply to __right__)
 - ```box--x``` (apply to __vertical sides__)
+
