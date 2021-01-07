@@ -15,7 +15,7 @@
 |float|boolean|no _(default: false)_| |Enable css float for this component|
 |onSelect|function|yes||Returns the selected option in a callback function|
 
-### SectionFilter
+### SectionHeader
 ```jsx
 <SectionHeader>[children]</SectionHeader>
 ```

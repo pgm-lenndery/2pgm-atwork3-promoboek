@@ -44,13 +44,13 @@ const App = () => {
                         <SectionHeader actionLabel="ontdek ze allemaal" to="/label">cases &amp;<br/>opdrachten</SectionHeader>
                         <SectionFilter label="filter projecten" items={ filterOptions } float={false} onSelect={option => console.log(option)}/>
                         <Works/>
-                        <ModalRoute path='/projecten'>
-                            <Modal>  
-                                Hello
-                            </Modal>
-                        </ModalRoute>
                     </main>
                 </div>
+                <ModalRoute path='/projecten'>
+                    <Modal>
+                        Hello
+                    </Modal>
+                </ModalRoute>
                 <ModalContainer/>
             </ModalContext.Provider>
         </Router>
