@@ -27,10 +27,14 @@ const App = () => {
         {value: 'avd'},
         {value: 'pgm'}
     ]
+
+    // Branch test....
     
     /**
      * TODO: modal Route component
      */
+
+     // Jesse to do: GraphQL setup
     
     return (
         <Router basename="#!">
