@@ -1,6 +1,7 @@
 @import '../../scss/abstracts';
 
 .boxModal {
+    position: relative;
     background-color: black;
     @include box('all');
     
@@ -19,9 +20,33 @@
     
     &__body {
         padding: 4rem;
+        min-width: 80vw;
+        min-height: 70vh;
     }
     
     &__actions {
+        position: absolute;
+        top: 2.3rem;
+        left: -2.3rem;
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        background-color: black;
+        z-index: 1;
         
+        .boxModal__action {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.3rem;
+            height: 2.3rem;
+            @include box('x');
+            @include box('b');
+            
+            &:first-child {
+                @include box('t');
+            }
+
+        }
     }
 }
