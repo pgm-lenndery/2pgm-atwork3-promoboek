@@ -10,6 +10,7 @@ import { ModalRoute, ModalContainer } from 'react-router-modal';
 
 import { Container, FloatCard, Works, Modal, SectionFilter, SectionHeader } from "./components";
 import { ModalContext } from './contexts';
+import { ProjectPage } from './pages';
 
 const App = () => {   
     const [ modal, setModal ] = useState(false);
@@ -44,10 +45,8 @@ const App = () => {
                         <Works/>
                     </main>
                 </div>
-                <ModalRoute path='/projecten'>
-                    <Modal>
-                        Hello
-                    </Modal>
+                <ModalRoute path={['/projecten/:id', '/project']} exact>
+                    <ProjectPage />
                 </ModalRoute>
                 <ModalContainer/>
             </ModalContext.Provider>

@@ -18,10 +18,20 @@
         transform: translate(-2.3rem, 2.3rem);
     }
     
-    &__body {
-        padding: 4rem;
+    &__header {
+        padding: 3rem;
+        @include box('b');
+        
+        *:last-child {margin-bottom: 0;}
+    }
+    
+    &__wrapper {
         min-width: 80vw;
         min-height: 70vh;
+    }
+    
+    &__body {
+        padding: 3rem;
     }
     
     &__actions {
