@@ -10,6 +10,7 @@ import { ModalRoute, ModalContainer } from 'react-router-modal';
 
 import { Container, FloatCard, Works, Modal, SectionFilter, SectionHeader } from "./components";
 import { ModalContext } from './contexts';
+import { ProjectPage } from './pages';
 
 const App = () => {   
     const [ modal, setModal ] = useState(false);
@@ -26,6 +27,8 @@ const App = () => {
         {value: 'avd'},
         {value: 'pgm'}
     ]
+
+    // Branch test....
     
     /**
      * TODO: modal Route component
@@ -44,13 +47,11 @@ const App = () => {
                         <SectionHeader actionLabel="ontdek ze allemaal" to="/label">cases &amp;<br/>opdrachten</SectionHeader>
                         <SectionFilter label="filter projecten" items={ filterOptions } float={false} onSelect={option => console.log(option)}/>
                         <Works/>
-                        <ModalRoute path='/projecten'>
-                            <Modal>  
-                                Hello
-                            </Modal>
-                        </ModalRoute>
                     </main>
                 </div>
+                <ModalRoute path={['/projecten/:id', '/project']} exact>
+                    <ProjectPage />
+                </ModalRoute>
                 <ModalContainer/>
             </ModalContext.Provider>
         </Router>
