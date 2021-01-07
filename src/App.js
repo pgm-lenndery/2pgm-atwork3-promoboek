@@ -32,6 +32,8 @@ const App = () => {
     /**
      * TODO: modal Route component
      */
+
+     // Jesse to do: GraphQL setup
     
     return (
         <Router basename="#!">
