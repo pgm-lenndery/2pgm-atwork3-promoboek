@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.3.6",
     "bootstrap": "^4.5.3",
     "cutleryjs": "^3.5.5",
     "faker": "^5.1.0",
+    "graphql": "^15.4.0",
     "node-sass": "^4.14.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
