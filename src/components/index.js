@@ -7,3 +7,5 @@ export { default as SectionFilter} from './SectionFilter';
 export { default as SectionHeader} from './SectionHeader';
 export { default as ModalRoute} from './ModalRoute';
 export { default as Modal} from './Modal';
+export { default as StudentCard} from './StudentCard';
+export { default as Section} from './Section';
