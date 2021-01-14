@@ -8,6 +8,9 @@ import {
 } from "react-router-dom";
 import { ModalRoute, ModalContainer } from 'react-router-modal';
 
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import { useQuery, gql } from '@apollo/client';
+
 import { Container, FloatCard, Works, Modal, SectionFilter, SectionHeader } from "./components";
 import { ModalContext } from './contexts';
 import { ProjectPage } from './pages';
@@ -28,15 +31,19 @@ const App = () => {
         {value: 'pgm'}
     ]
 
-    // Branch test....
-    
     /**
      * TODO: modal Route component
      */
 
-     // Jesse to do: GraphQL setup
+    const client = new ApolloClient({
+      uri: 'https://48p1r2roz4.sse.codesandbox.io',
+      cache: new InMemoryCache()
+    });
+
+    
     
     return (
+      <ApolloProvider client={client}>
         <Router basename="#!">
             <ModalContext.Provider value={[ modal, setModal ]}>
                 <div className="App">
@@ -55,6 +62,7 @@ const App = () => {
                 <ModalContainer/>
             </ModalContext.Provider>
         </Router>
+      </ApolloProvider>
     );
 }
 
