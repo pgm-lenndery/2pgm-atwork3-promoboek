@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.5.3",
+    "cutleryjs": "^3.5.5",
     "faker": "^5.1.0",
     "node-sass": "^4.14.1",
     "react": "^17.0.1",

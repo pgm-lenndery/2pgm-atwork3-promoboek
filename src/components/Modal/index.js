@@ -4,7 +4,7 @@ import { Minus, Plus, X } from 'react-feather';
 
 import './index.scss';
 
-export default ({ children, title = null, subtitle = null }) => {    
+export default ({ children, title = null, subtitle = null, afterHeaderComponents }) => {    
     /**
      * TODO: when minimalizing, save as tab on bottom with url as parameter
      */
@@ -24,6 +24,7 @@ export default ({ children, title = null, subtitle = null }) => {
                     <h1>{ title }</h1>
                     <p className="label">{ subtitle }</p>
                 </div>}
+                { afterHeaderComponents }
                 <div className="boxModal__body">
                     { children }
                 </div>

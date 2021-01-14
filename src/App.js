@@ -8,13 +8,12 @@ import {
 } from "react-router-dom";
 import { ModalRoute, ModalContainer } from 'react-router-modal';
 
-import { Container, FloatCard, Works, Modal, SectionFilter, SectionHeader } from "./components";
+import { Container, FloatCard, Works, Modal, SectionFilter, SectionHeader, Section, Cursor } from "./components";
 import { ModalContext } from './contexts';
-import { ProjectPage } from './pages';
+import { ProjectsOverviewPage, StudentsOverviewPage } from './pages';
 
 const App = () => {   
-    const [ modal, setModal ] = useState(false);
-    
+    const [ modal, setModal ] = useState(false);    
     const handleModal = () => {
         setModal(<div>lel</div>)
     }
@@ -43,15 +42,16 @@ const App = () => {
                     <header className="App-header">
                     </header>
                     <main>
-                        <Link to="/modal-test">Open modal</Link>
                         <SectionHeader actionLabel="ontdek ze allemaal" to="/label">cases &amp;<br/>opdrachten</SectionHeader>
-                        <SectionFilter label="filter projecten" items={ filterOptions } float={false} onSelect={option => console.log(option)}/>
-                        <Works/>
+                        <SectionFilter label="filter projecten" spacing={ true } items={ filterOptions } float={false} onSelect={option => console.log(option)}/>
+                        <Section spacing="b"> 
+                            <Works/>
+                        </Section>
+                        <SectionHeader actionLabel="ontdek ze allemaal" to="/studenten">onze &amp;<br/>studenten</SectionHeader>
                     </main>
                 </div>
-                <ModalRoute path={['/projecten/:id', '/project']} exact>
-                    <ProjectPage />
-                </ModalRoute>
+                <ModalRoute path={['/projecten/:id', '/projecten']}><ProjectsOverviewPage /></ModalRoute>
+                <ModalRoute path={['/studenten/:id', '/studenten']}><StudentsOverviewPage /></ModalRoute>
                 <ModalContainer/>
             </ModalContext.Provider>
         </Router>

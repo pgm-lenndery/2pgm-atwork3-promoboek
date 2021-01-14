@@ -1,4 +1,17 @@
 ## Components
+### Section
+```jsx
+<Section>[children]</Section>
+```
+```jsx
+<Section spacing="b"><p>Hello world!</p></Section>
+```
+#### Props
+|Propname|Value type|Required|Example syntax|Comment|
+|--------|----------|--------|--------------|-------|
+|[children]|components|false||The components that require spacing|
+|spacing|string|yes|top, bottom, left, right, t, b, l, r, x, y|The place where spacing will be applied|
+
 ### SectionFilter
 ```jsx
 <SectionFilter/>

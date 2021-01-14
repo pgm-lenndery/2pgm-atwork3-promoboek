@@ -2,13 +2,27 @@
 
 .container--section-filter {
     display: flex;
-    margin-bottom: 4rem;
-    @include box('y');
 }
 
 .sectionFilter {
     background-color: black;
     z-index: 90;
+    // overflow-x: scroll;
+    
+    &__wrapper {
+        overflow: visible;
+        overflow-x: scroll;
+        @include box('y');
+        scrollbar-width: 0px;
+    
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+    
+    &--spacing {
+        margin-bottom: 4rem;
+    }
     
     &--float {
         position: sticky;
@@ -20,11 +34,13 @@
         @include textModern;
         @include box('r');
         user-select: none;
+        white-space: nowrap;
     }
     
     &__options {
         display: flex;
         padding: 0 0 0 2.4rem;
+        
         
         .option {
             display: flex;
@@ -54,6 +70,10 @@
             }
             
             &__separator {margin: 0 2rem;}
+            
+            &:last-child {
+                padding-right: 2rem;
+            }
             
             &:last-child .option__separator {
                 display: none;
