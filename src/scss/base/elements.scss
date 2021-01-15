@@ -1,0 +1,6 @@
+input, textarea, button {
+    &, &:hover, &:active, &:focus, &:focus-within {
+        outline: none;
+        box-shadow: none;
+    }
+}
