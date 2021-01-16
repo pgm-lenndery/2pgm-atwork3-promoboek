@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
-import { Form, FormField, Modal } from '../components';
+import { useHistory } from 'react-router-dom';
+import { Form, FormField, Modal, FormFileUpload, FormButton } from '../components';
 import { useAuth } from '../firebase';
 
 export default () => {
@@ -8,7 +8,10 @@ export default () => {
     const history = useHistory();
     
     const handleRegistration = ({ email, password, ...otherData}) => {
-        register(email, password, otherData);
+        register(email, password, {
+            role: 'student',
+            ...otherData
+        });
     }
     
     useEffect(() => {
@@ -18,7 +21,8 @@ export default () => {
     return (
         <Modal title="Registreren" subtitle="maak een account">
             <Form onSubmit={handleRegistration}>
-                <div className="row FormField__group">
+                <FormFileUpload name="avatar" label="Avatar"/>
+                <div className="row form-element">
                     <div className="col">
                         <FormField name="firstName" label="Voornaam"/>
                     </div>
@@ -28,8 +32,7 @@ export default () => {
                 </div>
                 <FormField type="email" name="email" label="Email"/>
                 <FormField type="password" name="password" label="Wachtwoord"/>
-                
-                <button type="submit">enter</button>
+                <FormButton title="Registreren" />
             </Form>
         </Modal>
     )

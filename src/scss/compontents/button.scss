@@ -1,4 +1,4 @@
-.btn {
+.btn, button {
     padding: 0;
     border: none;
     background-color: transparent;
@@ -6,4 +6,5 @@
     user-select: none;
     
     @include noFocus;
+    
 }

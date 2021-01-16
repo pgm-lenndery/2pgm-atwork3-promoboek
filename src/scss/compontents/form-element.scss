@@ -1,0 +1,5 @@
+.form-element, label {
+    & + label, & + .form-element {
+        margin-top: .8rem;
+    }
+}

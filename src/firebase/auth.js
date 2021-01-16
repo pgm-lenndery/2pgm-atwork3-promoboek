@@ -43,12 +43,11 @@ export const AuthProvider = ({ children }) => {
      */
     const login = (email, password) => {
         dispatch({ type: "loading" });
-        try {
-            auth.signInWithEmailAndPassword(email, password);
-            dispatch({ type: "success", payload: null })
-        } catch (err) {
+        auth.signInWithEmailAndPassword(email, password)
+        .then(resp => dispatch({ type: "success", payload: null }))
+        .catch(err => {
             dispatch({ type: "error", payload: err })
-        }
+        })
     }
     
     /**

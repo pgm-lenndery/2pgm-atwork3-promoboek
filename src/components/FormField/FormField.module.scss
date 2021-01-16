@@ -1,16 +1,14 @@
 @import '../../scss/abstracts';
 
-.FormField {
+.field {
     position: relative;
     display: block;
     margin-bottom: 0;
+    border-bottom: 2px solid #7f47dd60;
     
-    & + label {
-        margin-top: .8rem;
-        
-    }
+    & + label {margin-top: .8rem;}
     
-    input {
+    input { 
         background-color: transparent;
         padding: 0.6rem 0;
         width: 100%;

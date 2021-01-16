@@ -11,3 +11,8 @@ export { default as StudentCard} from './StudentCard';
 export { default as Section} from './Section';
 export { default as Form} from './Form';
 export { default as FormField} from './FormField';
+export { default as FormFileUpload} from './FormFileUpload';
+export { default as ProtectedModalRoute} from './ProtectedModalRoute';
+export { default as FormButton} from './FormButton';
+export { default as FormError} from './FormError';
+export { default as Button} from './Button';
