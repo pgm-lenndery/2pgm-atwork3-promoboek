@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import './App.scss';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { ModalRoute, ModalContainer } from 'react-router-modal';
-import { useForm, FormProvider, useFormContext } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 
 import { AuthProvider, useAuth } from './firebase'
-import { Container, FloatCard, Works, Modal, SectionFilter, SectionHeader, Section, ProtectedModalRoute } from "./components";
+import { Works, SectionFilter, SectionHeader, Section, ProtectedModalRoute } from "./components";
 import { ModalContext } from './contexts';
-import { ProjectsOverviewPage, StudentsOverviewPage, RegisterPage, AccountPage } from './pages';
+import { ProjectsOverviewPage, StudentsOverviewPage, RegisterPage, AccountPage, UserNewProjectPage } from './pages';
+
+import 'dayjs/locale/nl-be';
 
 const App = () => {   
     const [ modal, setModal ] = useState(false);    
@@ -52,11 +54,12 @@ const AppWrapper = () => {
                     <SectionHeader actionLabel="ontdek ze allemaal" to="/studenten">onze &amp;<br/>studenten</SectionHeader>
                 </main>
             </div>
-            <ModalRoute exact={ true } path={['/projecten/:id', '/projecten']}><ProjectsOverviewPage /></ModalRoute>
-            <ModalRoute exact={ true } path={['/studenten/:id', '/studenten']}><StudentsOverviewPage /></ModalRoute>
+            <ModalRoute exact={ true } path={['/projecten']}><ProjectsOverviewPage /></ModalRoute>
+            <ModalRoute exact={ true } path={['/projecten/:id']}><ProjectsOverviewPage /></ModalRoute>
+            <ModalRoute exact={ true } path={['/studenten/:id']}><StudentsOverviewPage /></ModalRoute>
             <ModalRoute exact={ true } path={['/account/registreren']}><RegisterPage /></ModalRoute>
-            <ModalRoute exact={ true } path={['/account/registreren/lel']}><RegisterPage /></ModalRoute>
             <ProtectedModalRoute exact={ true } path={[ '/account' ]}><AccountPage /></ProtectedModalRoute>
+            <ProtectedModalRoute exact={ true } path={['/account/projecten/nieuw']}><UserNewProjectPage /></ProtectedModalRoute>
             <ModalContainer/>
         </>
     )

@@ -8,8 +8,13 @@
     text-transform: lowercase;
 }
 
+.small {
+    font-size: .85rem;
+}
+
 .text--modern, .label {
     @include textModern;
+    opacity: .6;
     
     a svg {
         margin: 0 -10px 0 0;

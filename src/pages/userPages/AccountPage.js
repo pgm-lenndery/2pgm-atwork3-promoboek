@@ -1,0 +1,48 @@
+import React, { useEffect } from 'react';
+import { Button, Modal, Wrapper } from '../../components';
+import { useAuth, useFirebaseStorage } from '../../firebase';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { UserProjectsPage } from '..';
+
+
+export default () => {
+    const { user, logout } = useAuth();
+    const { getDownloadURL, state: { data: userAvatar = '' } } = useFirebaseStorage(`users/${user.uid}/avatar.png`);
+    
+    useEffect(() => {
+        getDownloadURL();
+    }, [])
+    
+    return (
+        <Modal 
+            title={ `Hi ${ user.firstName }` } 
+            subtitle="beheer je account"
+            ignorePadding
+        >
+            <Tabs>
+                <TabList>
+                    <Tab>Account</Tab>
+                    <Tab>Projects</Tab>
+                </TabList>
+
+                <Wrapper>
+                    <TabPanel>
+                        <div className="row">
+                            <div className="col-12 col-lg-3">
+                                <img width="100%" src={ userAvatar } />
+                            </div>
+                            <div className="col-12 col-lg-9">
+                                <h3>{ user.firstName } { user.lastName }</h3>
+                                <p>{ user.email }</p>
+                                <Button title="Afmelden" onClick={logout} />
+                            </div>
+                        </div>
+                    </TabPanel>
+                    <TabPanel>
+                        <UserProjectsPage />
+                    </TabPanel>
+                </Wrapper>
+            </Tabs>
+        </Modal>
+    )
+}

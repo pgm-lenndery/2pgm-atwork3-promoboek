@@ -50,7 +50,8 @@ export const useFirestoreQuery = (defaultQuery) => {
     }
     
     useEffect(() => {
-        fetchQuery();
+        const unsubscribe = fetchQuery();
+        return () => unsubscribe();
     }, [])
     
     const refetch = (query = defaultQuery) => {

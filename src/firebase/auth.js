@@ -69,7 +69,7 @@ export const AuthProvider = ({ children }) => {
             dispatch({ type: "error", payload: err })
         }
     }
-    
+            
     useEffect(() => {
         if (registeredUserStatus === 'success') dispatch({ type: "success", payload: null })
     }, [registeredUserStatus])

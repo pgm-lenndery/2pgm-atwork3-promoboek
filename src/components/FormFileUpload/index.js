@@ -4,13 +4,12 @@ import { useFirebaseStorage } from '../../firebase';
 import styles from './FormFileUpload.module.scss';
 
 export default ({ name, label, multiple = false }) => {
-    const { register, setValue } = useFormContext();
+    const { register } = useFormContext();
     const [ selectedFile, setSelectedFile ] = useState([]);
     const [ draggedOver, setDraggedOver ] = useState(false);
     // const { uploadFile, state } = useFirebaseStorage('avatars');
     
     const handleDrop = async ({ target: { files }}) => {
-        setValue('avatar', files);
         setSelectedFile([...files]);
     }
     
@@ -24,11 +23,11 @@ export default ({ name, label, multiple = false }) => {
                     <h4>{ label }</h4>
                     <small>Sleep een bestand naar hier of klik om te selecteren</small>
                 </div>
-                {!selectedFile ? <small>Geen bestand geselecteerd</small> : <ul className={ styles.list }>{ selectedFile.map(f =>
-                    <li>{ f.name }</li>
+                {!selectedFile ? <small>Geen bestand geselecteerd</small> : <ul className={ styles.list }>{ selectedFile.map((f, index) =>
+                    <li key={ index }>{ f.name }</li>
                 )}</ul>}
             </div>
-            <input type="file" name={ name } onChange={(e, event) => handleDrop(e, event)}/>
+            <input ref={ register } type="file" name={ name } onChange={(e, event) => handleDrop(e, event)}/>
         </label>
     )
 }

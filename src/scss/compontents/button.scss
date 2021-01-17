@@ -6,5 +6,8 @@
     user-select: none;
     
     @include noFocus;
-    
+}
+
+.btn-group {
+    gap: 2rem;
 }

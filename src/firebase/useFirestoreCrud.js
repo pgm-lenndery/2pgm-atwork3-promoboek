@@ -43,7 +43,7 @@ export const useFirestoreCrud = (documentPath = '') => {
         .then(() => dispatch({ type: "success", payload: null }))
         .catch(err => dispatch({ type: "error", payload: null }))
         
-        dispatch({ type: "idle" });
+        // dispatch({ type: "idle" });
     }
     
     /**
@@ -55,11 +55,14 @@ export const useFirestoreCrud = (documentPath = '') => {
         dispatch({ type: "loading" });
         
         try {
-            const addedDocument = await firestore.collection(path).add(data)
+            const addedDocument = await firestore.collection(path).add({
+                ...data,
+                createdAt: new Date()
+            })
             const response = await addedDocument.get()
             const responseData = await response.data()
             dispatch({ type: "success", payload: {...responseData, id: response.id} })
-            dispatch({ type: "idle" }); 
+            // dispatch({ type: "idle" }); 
         } catch (err) {
             dispatch({ type: "error", payload: err })
         }
@@ -69,7 +72,10 @@ export const useFirestoreCrud = (documentPath = '') => {
         dispatch({ type: "loading" });
         
         try {
-            const updatedDocument = await firestore.doc(path).update(data);
+            const updatedDocument = await firestore.doc(path).update({
+                ...data,
+                updatedAt: new Date()
+            });
             dispatch({ type: "success", payload: null })
         } catch (err) {
             dispatch({ type: "error", payload: err })
@@ -86,7 +92,10 @@ export const useFirestoreCrud = (documentPath = '') => {
         dispatch({ type: "loading" });
         
         firestore.doc(path)
-        .set(data)
+        .set({
+            ...data,
+            createdAt: new Date()
+        })
         .then((createdDoc) => dispatch({ type: "success", payload: createdDoc }))
         .catch(err => dispatch({ type: "error", payload: err }))
         

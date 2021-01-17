@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useRouteMatch } from 'react-router-dom';
 import { ModalRoute, ModalContainer } from 'react-router-modal';
-import { Form, FormButton, FormError, FormField, Modal } from '..';
+import { Anker, Form, FormButton, FormError, FormField, Modal } from '..';
 import { useAuth } from '../../firebase';
 
 export default ({ path, children, exact = false }) => {
@@ -33,7 +33,10 @@ export default ({ path, children, exact = false }) => {
             <FormField name="email" type="email" label="Email" />
             <FormField name="password" type="password" label="Wachtwoord" />
             <FormError visible={ error && true } error={`${translateError(error)}`} />
-            <FormButton title="Aanmelden" loading={ status === 'loading' } />
+            <div className="d-flex btn-group">
+                <FormButton title="Aanmelden" loading={ status === 'loading' } />
+                <Anker title="Registreren" href="/account/registreren" />
+            </div>
         </Form>
     </Modal></ModalRoute>
     

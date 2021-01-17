@@ -34,11 +34,16 @@
         max-width: 90vw;
         min-width: 80vw;
         max-height: 80vh;
+        // min-height: 80vh;
         overflow: scroll;
     }
     
     &__body {
         padding: 3rem;
+        
+        &--ignore-padding {
+            padding: 0rem
+        }
     }
     
     &__actions {

@@ -44,17 +44,17 @@ export const useFirebaseStorage = (storagePath = '') => {
         dispatch({ type: "loading" });
         
         storage.ref(path).getDownloadURL()
-            .then(uri => dispatch({ type: "success", payload: uri }))
-            .catch(err => dispatch({ type: "error", payload: err }))
+        .then(uri => dispatch({ type: "success", payload: uri }))
+        .catch(err => dispatch({ type: "error", payload: err }))
     }
     
     /**
      * 
      * @param {string} file The path to the file on the device
-     * @param {string} fileName Choose a custom name for the file that is uploaded, this overrides the random Id
      * @param {string} path Overrides the global storagePath. When uploading files, do exclude the filename.
+     * @param {string} fileName Choose a custom name for the file that is uploaded, this overrides the random Id, do exclude the extension
      */
-    const uploadFile = async (file, fileName, path = storagePath) => {
+    const uploadFile = async (file, path = storagePath, fileName ) => {
         dispatch({ type: "loading" });
         
         try {            
