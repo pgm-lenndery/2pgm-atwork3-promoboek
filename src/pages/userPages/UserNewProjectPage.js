@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react';
-import { BoxCard, Works, Button, Form, FormField, FormButton, Modal, Anker, FormSelect } from '../../components';
-import { useAuth, useFirestoreCrud } from '../../firebase';
+import { BoxCard, Works, Button, Form, FormField, FormButton, Modal, Anker, FormSelect, Loader } from '../../components';
+import { useAuth, useFirestoreCrud, useFirestoreQuery } from '../../firebase';
 
 export default () => {   
     const { user } = useAuth();
     const { addDocument, state: { status, data } } = useFirestoreCrud('projects');
+    const { data: coursesListData } = useFirestoreQuery(fs => fs.collection('courses'))
     
-    const handleNewProject = ({ projectUrl, gitUrl, ...otherValues }) => {
+    const handleNewProject = ({ projectUrl, gitUrl, academicYear, ...otherValues }) => {
         addDocument({
             ...otherValues,
+            academicYear: new Date(academicYear),
             links: {
                 project: projectUrl,
                 git: gitUrl
@@ -16,8 +18,6 @@ export default () => {
             creator: user.uid
         });
     }
-    
-    console.log({ data })
     
     if (status === 'success') return (
         <Modal 
@@ -39,10 +39,7 @@ export default () => {
                 <FormField name="intro" label="Introductie" />
                 <FormField name="description" label="Over dit project" />
                 <FormField name="tags" label="Tags" />
-                {/* <FormField name="course" label="Vak" /> */}
-                <FormSelect name="course" label="Vak" options={[
-                    { label: 'Web Programming 5', value: 'webpgm5' }
-                ]}/>
+                <FormSelect name="course" label="Vak" config={{ value: 'id' }} options={ coursesListData }/>
                 <FormField name="academicYear" label="Datum creatie" type="date" />
                 <div className="row form-element">
                     <div className="col">

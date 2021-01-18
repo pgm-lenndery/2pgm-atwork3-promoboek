@@ -4,8 +4,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { ModalRoute, ModalContainer } from 'react-router-modal';
 import { useForm, FormProvider } from "react-hook-form";
 
-import { AuthProvider, useAuth } from './firebase'
-import { Works, SectionFilter, SectionHeader, Section, ProtectedModalRoute } from "./components";
+import { AuthProvider, useAuth, useFirestoreQuery } from './firebase'
+import { Works, SectionFilter, SectionHeader, Section, ProtectedModalRoute, Loader, StudentCard } from "./components";
 import { ModalContext } from './contexts';
 import { ProjectsOverviewPage, StudentsOverviewPage, RegisterPage, AccountPage, UserNewProjectPage } from './pages';
 
@@ -28,18 +28,16 @@ const App = () => {
     );
 }
 
-const filterOptions = [
-    {value: null, label: 'alles', checked: true},
-    {value: 'cmo'},
-    {value: 'gmb'},
-    {value: 'nmd'},
-    {value: 'avd'},
-    {value: 'pgm'}
+const extraFilterOptions = [
+    {llama: null, label: 'alles', checked: true}
 ]
 
 const AppWrapper = () => {
     const { user } = useAuth()
-
+    const { data: coursesListData = [] } = useFirestoreQuery(fs => fs.collection('courses'))
+    const { data: projectsData } = useFirestoreQuery(fs => fs.collection('projects').limit(9))
+    const { data: studentsData } = useFirestoreQuery(fs => fs.collection("users").where('role', '==', 'student').limit(12))
+    
     return (
         <>
             <div className="App">
@@ -47,11 +45,32 @@ const AppWrapper = () => {
                 </header>
                 <main>
                     <SectionHeader actionLabel="ontdek ze allemaal" to="/label">cases &amp;<br/>opdrachten</SectionHeader>
-                    <SectionFilter label="filter projecten" spacing={ true } items={ filterOptions } float={false} onSelect={option => console.log(option)}/>
+                    <SectionFilter 
+                        label="filter projecten" 
+                        spacing={ true } 
+                        items={[ ...extraFilterOptions, ...coursesListData ]} 
+                        float={ false } 
+                        config={{ value: 'llama' }}
+                        onSelect={option => console.log(option)}
+                    />
                     <Section spacing="b"> 
-                        <Works/>
+                        <Works data={ projectsData }/>
                     </Section>
                     <SectionHeader actionLabel="ontdek ze allemaal" to="/studenten">onze &amp;<br/>studenten</SectionHeader>
+                    <Section spacing="b"> 
+                        <div className="student-list">
+                            {
+                                !studentsData ? <Loader /> : 
+                                studentsData.map(s => 
+                                    <StudentCard key={ s.id } 
+                                        firstName={ s.firstName }
+                                        lastName={ s.lastName } 
+                                        avatar={ 'https://i.fok.nl/userpics/155136/vanleemhuyzen.jpg' }
+                                    />
+                                )
+                            }
+                        </div>
+                    </Section>
                 </main>
             </div>
             <ModalRoute exact={ true } path={['/projecten']}><ProjectsOverviewPage /></ModalRoute>

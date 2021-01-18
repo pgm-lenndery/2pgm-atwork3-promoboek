@@ -75,8 +75,8 @@ Uses react-form-hook
 #### Props
 |Propname|Value type|Required|Example syntax|Comment|
 |--------|----------|--------|--------------|-------|
-|onClick|function|yes||The callbackfunction that returns all values from the form
 |[children]|components|yes||The Field-components
+|onClick|function|yes||The callbackfunction that returns all values from the form
 
 ## Classes
 ### Box
