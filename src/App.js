@@ -11,7 +11,7 @@ import { ProjectsOverviewPage, StudentsOverviewPage, RegisterPage, AccountPage, 
 
 import 'dayjs/locale/nl-be';
 
-const App = () => {   
+const App = () => {
     const [ modal, setModal ] = useState(false);    
     const methods = useForm();
     
@@ -62,7 +62,8 @@ const AppWrapper = () => {
                             {
                                 !studentsData ? <Loader /> : 
                                 studentsData.map(s => 
-                                    <StudentCard key={ s.id } 
+                                    <StudentCard
+                                        key={ s.id } 
                                         firstName={ s.firstName }
                                         lastName={ s.lastName } 
                                         avatar={ 'https://i.fok.nl/userpics/155136/vanleemhuyzen.jpg' }

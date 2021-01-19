@@ -46,6 +46,21 @@
         }
     }
     
+    &__crumbs {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        padding: 0 2rem;
+        height: 2.3rem;
+        @include box('t');
+        
+        .crumbs__separator {
+            &:last-child {
+                display: none;
+            }
+        }
+    }
+    
     &__actions {
         position: absolute;
         top: 2.3rem;
