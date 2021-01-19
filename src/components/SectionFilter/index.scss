@@ -51,6 +51,7 @@
                 position: relative;
                 padding: 1rem 0;
                 white-space: nowrap;
+                text-transform: lowercase;
                 
                 &::after {
                     background-color: transparent;
@@ -61,8 +62,8 @@
                 .option__label::after {
                     content: '';
                     position: absolute;
-                    top: -6px;
-                    bottom: -6px;
+                    top: 0px;
+                    bottom: 0px;
                     left: -1rem;
                     right: -1rem;
                     background-color: $purple500;

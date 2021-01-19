@@ -1,0 +1,16 @@
+.react-tabs {
+    &__tab-list {
+        $spacing: .4rem;
+        padding: $spacing $spacing 0 $spacing;
+        @include box('b');
+    }
+    
+    &__tab {
+        border-radius: 0px;
+        border: none;
+    }
+   
+   &__tab--selected {
+       
+   }
+}

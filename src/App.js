@@ -1,13 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.scss';
 import { BrowserRouter as Router } from "react-router-dom";
 import { ModalRoute, ModalContainer } from 'react-router-modal';
 import { useForm, FormProvider } from "react-hook-form";
 
 import { AuthProvider, useAuth, useFirestoreQuery } from './firebase'
-import { Works, SectionFilter, SectionHeader, Section, ProtectedModalRoute, Loader, StudentCard } from "./components";
+import { Works, SectionFilter, SectionHeader, Section, ProtectedModalRoute, Loader, StudentCard, Anker } from "./components";
 import { ModalContext } from './contexts';
-import { ProjectsOverviewPage, StudentsOverviewPage, RegisterPage, AccountPage, UserNewProjectPage } from './pages';
+import { ProjectsOverviewPage, StudentsOverviewPage, RegisterPage, AccountPage, UserNewProjectPage, ProjectDetailPage } from './pages';
 
 import 'dayjs/locale/nl-be';
 
@@ -29,14 +29,22 @@ const App = () => {
 }
 
 const extraFilterOptions = [
-    {llama: null, label: 'alles', checked: true}
+    { label: 'alles', checked: true, abbr: null }
 ]
 
 const AppWrapper = () => {
-    const { user } = useAuth()
+    const { user, noUserFound } = useAuth()
     const { data: coursesListData = [] } = useFirestoreQuery(fs => fs.collection('courses'))
-    const { data: projectsData } = useFirestoreQuery(fs => fs.collection('projects').limit(9))
+    const { data: projectsData, refetch: refetchProjects } = useFirestoreQuery(fs => fs.collection('projects').limit(9))
     const { data: studentsData } = useFirestoreQuery(fs => fs.collection("users").where('role', '==', 'student').limit(12))
+    const [ filter, setFilter ] = useState({ abbr: null });
+    
+    useEffect(() => {
+        if (filter.abbr === null) refetchProjects()
+        else {
+            refetchProjects(fs => fs.collection('projects').where('course', '==', filter.id))
+        }
+    }, [filter])
     
     return (
         <>
@@ -51,10 +59,16 @@ const AppWrapper = () => {
                         items={[ ...extraFilterOptions, ...coursesListData ]} 
                         float={ false } 
                         config={{ value: 'llama' }}
-                        onSelect={option => console.log(option)}
+                        onSelect={ setFilter }
                     />
                     <Section spacing="b"> 
-                        <Works data={ projectsData }/>
+                        {
+                            projectsData?.length === 0 ?
+                            <div>
+                                <div className="label small text-center">Bekijk een ander vak</div>
+                                <h3 className="text-center">Geen projecten gevonden</h3>
+                            </div> : <Works data={ projectsData } />
+                        }
                     </Section>
                     <SectionHeader actionLabel="ontdek ze allemaal" to="/studenten">onze &amp;<br/>studenten</SectionHeader>
                     <Section spacing="b"> 
@@ -75,7 +89,7 @@ const AppWrapper = () => {
                 </main>
             </div>
             <ModalRoute exact={ true } path={['/projecten']}><ProjectsOverviewPage /></ModalRoute>
-            <ModalRoute exact={ true } path={['/projecten/:id']}><ProjectsOverviewPage /></ModalRoute>
+            <ModalRoute exact={ true } path={['/projecten/:id']}><ProjectDetailPage /></ModalRoute>
             <ModalRoute exact={ true } path={['/studenten/:id']}><StudentsOverviewPage /></ModalRoute>
             <ModalRoute exact={ true } path={['/account/registreren']}><RegisterPage /></ModalRoute>
             <ProtectedModalRoute exact={ true } path={[ '/account' ]}><AccountPage /></ProtectedModalRoute>
