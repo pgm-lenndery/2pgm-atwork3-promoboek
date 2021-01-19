@@ -38,7 +38,7 @@
     // 500, 600, 700, 800
 }
 
-@mixin textModern{
+@mixin textModern {
     @include fontSub;
     letter-spacing: 4px;
     text-transform: uppercase;

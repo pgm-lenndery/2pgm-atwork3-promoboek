@@ -2,8 +2,8 @@ import React from 'react';
 
 import './index.scss';
 
-export default ({ children }) => {
+export default ({ children, className = '' }) => {
     return (
-        <div className="purpleRain">{ children }</div>
+        <div className={`purpleRain ${ className }`}>{ children }</div>
     )
 }

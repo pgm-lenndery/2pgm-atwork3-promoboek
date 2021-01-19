@@ -1,0 +1,50 @@
+@import '../../scss/abstracts';
+
+.field {
+    position: relative;
+    display: block;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    border: 2px dashed $purple500;
+    background-color: transparent;
+    
+    & + label {
+        margin-top: .8rem;
+        
+    }
+    
+    &.dragOver {
+        background-color: #47277B60;
+    }
+    
+    &.hasFiles {
+        background-color: #47277B60;
+        border-style: solid;
+    }
+    
+    input {
+        position: absolute;
+        top: 0; bottom: 0;
+        left: 0; right: 0;
+        width: 100%;
+        opacity: 0;
+    }
+    
+    div {
+        text-align: center;
+        
+        h4 {@include textModern;}
+        small {opacity: .6;}
+        
+        :last-child {
+            margin-bottom: 0;
+        }
+    }
+    
+    .list {
+        margin-top: .6rem;
+        list-style: none;
+        font-size: .8rem;
+        @include textModern;
+    }
+}

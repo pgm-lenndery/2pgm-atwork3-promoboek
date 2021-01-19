@@ -1,0 +1,13 @@
+.error {
+    margin-top: 1rem;
+    max-height: 0vh;
+    overflow: hidden;
+    opacity: 0;
+    color: #dd4781;
+    font-size: .9rem;
+}
+
+.errorVisible {
+    opacity: 1;
+    max-height: 100vh;
+}
