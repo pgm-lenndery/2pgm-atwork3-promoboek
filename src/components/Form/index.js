@@ -8,7 +8,7 @@ export default ({ children, onSubmit, loading = false }) => {
     const { register, handleSubmit, getValues } = useFormContext();
     
     return (
-        <form className={ styles.form } onSubmit={handleSubmit(onSubmit)}>
+        <form className={ `${styles.form} ${ loading ? 'form--loading' : ''}` } onSubmit={handleSubmit(onSubmit)}>
             { children }
             {loading && <div className={ styles.loadingOverlay }>
                 <Loader type="Oval" color="#7f47dd" height={60} width={60} className="react-loader"/>

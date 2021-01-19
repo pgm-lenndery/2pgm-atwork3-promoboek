@@ -1,5 +1,9 @@
 .form {
     position: relative;
+    
+    &--loading {
+        cursor: not-allowed;
+    }
 }
 
 .loadingOverlay {
