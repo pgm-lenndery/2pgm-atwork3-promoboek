@@ -10,6 +10,12 @@
     }
 }
 
+.react-loader {
+    &, * {
+        transition: unset;
+    }
+}
+
 html, body {
     margin: 0;
     padding: 0;
@@ -20,4 +26,5 @@ html, body {
 img {
     user-select: none;
     pointer-events: none;
+    object-fit: cover;
 }

@@ -1,9 +1,14 @@
 @import '../../scss/abstracts';
 
+.react-router-modal__modal {
+    transform: translate(-50%, calc(-50% - (2.3rem/2)));
+}
+
 .boxModal {
     position: relative;
     background-color: black;
     @include box('all');
+    // transform: translateY(-2.3rem);
     
     &::after {
         content: '';
@@ -26,12 +31,34 @@
     }
     
     &__wrapper {
+        max-width: 90vw;
         min-width: 80vw;
-        min-height: 70vh;
+        max-height: 80vh;
+        // min-height: 80vh;
+        overflow: scroll;
     }
     
     &__body {
         padding: 3rem;
+        
+        &--ignore-padding {
+            padding: 0rem
+        }
+    }
+    
+    &__crumbs {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        padding: 0 2rem;
+        height: 2.3rem;
+        @include box('t');
+        
+        .crumbs__separator {
+            &:last-child {
+                display: none;
+            }
+        }
     }
     
     &__actions {
@@ -58,5 +85,9 @@
             }
 
         }
+    }
+    
+    .sectionFilter {
+        border-top: none;
     }
 }

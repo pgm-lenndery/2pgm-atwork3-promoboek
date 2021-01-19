@@ -1,0 +1,11 @@
+@import '../../scss/abstracts';
+
+.card {
+    padding: 3rem;
+    width: fit-content;
+    @include box('all');
+    
+    :last-child {
+        padding-bottom: 0;
+    }
+}

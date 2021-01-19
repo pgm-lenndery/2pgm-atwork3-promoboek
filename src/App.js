@@ -1,69 +1,88 @@
 import { useState } from 'react';
 import './App.scss';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-} from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { ModalRoute, ModalContainer } from 'react-router-modal';
+import { useForm, FormProvider } from "react-hook-form";
 
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
-import { useQuery, gql } from '@apollo/client';
-
-import { Container, FloatCard, Works, Modal, SectionFilter, SectionHeader } from "./components";
+import { AuthProvider, useAuth, useFirestoreQuery } from './firebase'
+import { Works, SectionFilter, SectionHeader, Section, ProtectedModalRoute, Loader, StudentCard } from "./components";
 import { ModalContext } from './contexts';
-import { ProjectPage } from './pages';
+import { ProjectsOverviewPage, StudentsOverviewPage, RegisterPage, AccountPage, UserNewProjectPage } from './pages';
 
-const App = () => {   
-    const [ modal, setModal ] = useState(false);
-    
-    const handleModal = () => {
-        setModal(<div>lel</div>)
-    }
-    
-    const filterOptions = [
-        {value: null, label: 'alles', checked: true},
-        {value: 'cmo'},
-        {value: 'gmb'},
-        {value: 'nmd'},
-        {value: 'avd'},
-        {value: 'pgm'}
-    ]
+import 'dayjs/locale/nl-be';
 
-    /**
-     * TODO: modal Route component
-     */
-
-    const client = new ApolloClient({
-      uri: 'https://48p1r2roz4.sse.codesandbox.io',
-      cache: new InMemoryCache()
-    });
-
-    
+const App = () => {
+    const [ modal, setModal ] = useState(false);    
+    const methods = useForm();
     
     return (
-      <ApolloProvider client={client}>
-        <Router basename="#!">
-            <ModalContext.Provider value={[ modal, setModal ]}>
-                <div className="App">
-                    <header className="App-header">
-                    </header>
-                    <main>
-                        <Link to="/modal-test">Open modal</Link>
-                        <SectionHeader actionLabel="ontdek ze allemaal" to="/label">cases &amp;<br/>opdrachten</SectionHeader>
-                        <SectionFilter label="filter projecten" items={ filterOptions } float={false} onSelect={option => console.log(option)}/>
-                        <Works/>
-                    </main>
-                </div>
-                <ModalRoute path={['/projecten/:id', '/project']} exact>
-                    <ProjectPage />
-                </ModalRoute>
-                <ModalContainer/>
-            </ModalContext.Provider>
-        </Router>
-      </ApolloProvider>
+        <AuthProvider>
+            <FormProvider {...methods}>
+                <Router basename="#!">
+                    <ModalContext.Provider value={[ modal, setModal ]}>
+                        <AppWrapper />
+                    </ModalContext.Provider>
+                </Router>
+            </FormProvider>
+        </AuthProvider>
     );
+}
+
+const extraFilterOptions = [
+    {llama: null, label: 'alles', checked: true}
+]
+
+const AppWrapper = () => {
+    const { user } = useAuth()
+    const { data: coursesListData = [] } = useFirestoreQuery(fs => fs.collection('courses'))
+    const { data: projectsData } = useFirestoreQuery(fs => fs.collection('projects').limit(9))
+    const { data: studentsData } = useFirestoreQuery(fs => fs.collection("users").where('role', '==', 'student').limit(12))
+    
+    return (
+        <>
+            <div className="App">
+                <header className="App-header">
+                </header>
+                <main>
+                    <SectionHeader actionLabel="ontdek ze allemaal" to="/label">cases &amp;<br/>opdrachten</SectionHeader>
+                    <SectionFilter 
+                        label="filter projecten" 
+                        spacing={ true } 
+                        items={[ ...extraFilterOptions, ...coursesListData ]} 
+                        float={ false } 
+                        config={{ value: 'llama' }}
+                        onSelect={option => console.log(option)}
+                    />
+                    <Section spacing="b"> 
+                        <Works data={ projectsData }/>
+                    </Section>
+                    <SectionHeader actionLabel="ontdek ze allemaal" to="/studenten">onze &amp;<br/>studenten</SectionHeader>
+                    <Section spacing="b"> 
+                        <div className="student-list">
+                            {
+                                !studentsData ? <Loader /> : 
+                                studentsData.map(s => 
+                                    <StudentCard
+                                        key={ s.id } 
+                                        firstName={ s.firstName }
+                                        lastName={ s.lastName } 
+                                        avatar={ 'https://i.fok.nl/userpics/155136/vanleemhuyzen.jpg' }
+                                    />
+                                )
+                            }
+                        </div>
+                    </Section>
+                </main>
+            </div>
+            <ModalRoute exact={ true } path={['/projecten']}><ProjectsOverviewPage /></ModalRoute>
+            <ModalRoute exact={ true } path={['/projecten/:id']}><ProjectsOverviewPage /></ModalRoute>
+            <ModalRoute exact={ true } path={['/studenten/:id']}><StudentsOverviewPage /></ModalRoute>
+            <ModalRoute exact={ true } path={['/account/registreren']}><RegisterPage /></ModalRoute>
+            <ProtectedModalRoute exact={ true } path={[ '/account' ]}><AccountPage /></ProtectedModalRoute>
+            <ProtectedModalRoute exact={ true } path={['/account/projecten/nieuw']}><UserNewProjectPage /></ProtectedModalRoute>
+            <ModalContainer/>
+        </>
+    )
 }
 
 export default App

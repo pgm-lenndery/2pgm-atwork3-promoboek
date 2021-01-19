@@ -2,9 +2,10 @@ import React from 'react';
 // import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
 import Masonry from 'react-masonry-css';
 import { Container, FloatCard } from '..';
+import Loader from '../Loader';
 import './index.scss';
 
-export default () => {
+export default ({ data }) => {
     const setHovered = e => {
         const $card = e.target.closest('.floatCard');
         const $container = e.target.parentNode.closest('.container-fluid');
@@ -20,8 +21,8 @@ export default () => {
     
     const breakpointColumnsObj = {
         default: 3,
-        900: 3,
-        750: 2,
+        1100: 2,
+        800: 1,
     };
     
 //     breakpointCols={breakpointColumnsObj}
@@ -35,22 +36,18 @@ export default () => {
             onMouseOver={e => setHovered(e)} 
             onMouseOut={e => removeFocus(e)}
         >
-            <Masonry
-                breakpointCols={breakpointColumnsObj}
-                className="masonry"
-                columnClassName="masonry__column"
-            >
-                <FloatCard title="Tronald Dump">Leren omgaan met XMLHttpRequests</FloatCard>
-                <FloatCard title="Tronald Dump">Leren omgaan met XMLHttpRequests</FloatCard>
-                <FloatCard title="Tronald Dump">Leren omgaan met XMLHttpRequests</FloatCard>
-                <FloatCard title="Tronald Dump">Leren omgaan met XMLHttpRequests</FloatCard>
-                <FloatCard title="Tronald Dump">Leren omgaan met XMLHttpRequests</FloatCard>
-                <FloatCard title="Tronald Dump">Leren omgaan met XMLHttpRequests</FloatCard>
-                <FloatCard title="Tronald Dump">Leren omgaan met XMLHttpRequests</FloatCard>
-                <FloatCard title="Tronald Dump">Leren omgaan met XMLHttpRequests</FloatCard>
-                <FloatCard title="Tronald Dump">Leren omgaan met XMLHttpRequests</FloatCard>
-                <FloatCard title="Tronald Dump">Leren omgaan met XMLHttpRequests</FloatCard>
-            </Masonry>
+            {
+                !data ? <Loader /> :
+                <Masonry
+                    breakpointCols={breakpointColumnsObj}
+                    className="masonry"
+                    columnClassName="masonry__column"
+                >
+                    {data.map(p => 
+                        <FloatCard key={ p.id } data={p}>{ p.intro }</FloatCard>
+                    )}
+                </Masonry>
+            }
         </Container>
     )
 }

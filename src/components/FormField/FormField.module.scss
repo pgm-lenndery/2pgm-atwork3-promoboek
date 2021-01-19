@@ -1,0 +1,35 @@
+@import '../../scss/abstracts';
+
+.field {
+    position: relative;
+    display: block;
+    margin-bottom: 0;
+    border-bottom: 2px solid #7f47dd60;
+    
+    & + label {margin-top: .8rem;}
+    
+    input { 
+        background-color: transparent;
+        padding: 0.6rem 0;
+        width: 100%;
+        border: none;
+        color: white;
+        
+        &::placeholder {
+            color: white;
+            text-transform: lowercase;
+        }
+        
+        &:not(:placeholder-shown) + span, &:focus + span {
+            top: 0;
+        }
+    }
+    
+    span {
+        position: absolute;
+        top: 50%; left: .0;
+        transform: translateY(-50%);
+        opacity: .6;
+        @include textModern;
+    }
+}

@@ -3,8 +3,12 @@
 .floatCard {
     position: relative;
     display: block;
-    max-width: 45vw;
+    // max-width: 45vw;
     @include box('all');
+    
+    & + .floatCard {
+        margin-top: 4rem;
+    }
     
     &__head {
         display: flex;

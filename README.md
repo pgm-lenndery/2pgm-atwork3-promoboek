@@ -1,4 +1,17 @@
 ## Components
+### Section
+```jsx
+<Section>[children]</Section>
+```
+```jsx
+<Section spacing="b"><p>Hello world!</p></Section>
+```
+#### Props
+|Propname|Value type|Required|Example syntax|Comment|
+|--------|----------|--------|--------------|-------|
+|[children]|components|false||The components that require spacing|
+|spacing|string|yes|top, bottom, left, right, t, b, l, r, x, y|The place where spacing will be applied|
+
 ### SectionFilter
 ```jsx
 <SectionFilter/>
@@ -28,7 +41,42 @@
 |--------|----------|--------|--------------|-------|
 |[children]|components|yes||The title of the section header|
 |actionLabel|string|yes||The content that will be displayed in the anker element|
-|to|string|yes|'/contact'| Sets the link for the anker element|
+|to|string|yes|'/contact'|Sets the link for the anker element|
+
+### Anker
+A component for navigating the app, using React Router. Only for internal routes.
+
+```jsx
+<Anker />
+```
+
+```jsx
+<Anker title="Contact us" href="/contact"/>
+```
+
+#### Props
+|Propname|Value type|Required|Example syntax|Comment|
+|--------|----------|--------|--------------|-------|
+|title|string, number|yes||The label for the button
+|href|string|yes|'/contact'|Sets the link for the anker element, always start with a '/'
+
+### Form
+Uses react-form-hook
+
+```jsx
+<Form>[children]</Form>
+```
+```jsx
+<Form onClick={values => console.log(values)}>
+    [children]
+</Form>
+```
+
+#### Props
+|Propname|Value type|Required|Example syntax|Comment|
+|--------|----------|--------|--------------|-------|
+|[children]|components|yes||The Field-components
+|onClick|function|yes||The callbackfunction that returns all values from the form
 
 ## Classes
 ### Box

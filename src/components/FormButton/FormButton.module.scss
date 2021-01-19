@@ -1,0 +1,49 @@
+$accent: #47277B;
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.8rem;
+    padding: .6rem .3rem .6rem 1rem;
+    background-color: $accent;
+    border: 2px solid $accent;
+    overflow: visible;
+    white-space: nowrap;
+    user-select: none;
+    
+    .label {
+        display: inline-block;
+        overflow: hidden;
+        max-width: 100%;
+        opacity: 1;
+    }
+    
+    .indicator {
+        overflow: hidden;
+        max-width: 0%;
+        opacity: 0;
+        
+        svg {
+            width: 0;
+        }
+    }
+}
+
+.loading {
+    background-color: transparent;
+    
+    .label {
+        max-width: 0%;
+        opacity: 0;
+    }
+    
+    .indicator {
+        max-width: 100%;
+        opacity: 1;
+        
+        svg {
+            width: inherit;
+        }
+    }
+}

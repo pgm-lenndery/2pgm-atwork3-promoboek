@@ -27,6 +27,7 @@
         &__label {
             @include textModern;
             font-size: calc(1.3rem + 0.6vw);
+            text-align: right;
         }
         
         &__icon svg {
