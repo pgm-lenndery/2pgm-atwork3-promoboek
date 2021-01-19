@@ -5,7 +5,7 @@ import { ModalRoute, ModalContainer } from 'react-router-modal';
 import { useForm, FormProvider } from "react-hook-form";
 
 import { AuthProvider, useAuth, useFirestoreQuery } from './firebase'
-import { Works, SectionFilter, SectionHeader, Section, ProtectedModalRoute, Loader, StudentCard, Anker } from "./components";
+import { Works, SectionFilter, SectionHeader, Section, ProtectedModalRoute, Loader, StudentCard, Fab, Anker } from "./components";
 import { ModalContext } from './contexts';
 import { ProjectsOverviewPage, StudentsOverviewPage, RegisterPage, AccountPage, UserNewProjectPage, ProjectDetailPage } from './pages';
 
@@ -86,6 +86,7 @@ const AppWrapper = () => {
                             }
                         </div>
                     </Section>
+                    { user ? <Fab label="account" href="/account"/> : null }
                 </main>
             </div>
             <ModalRoute exact={ true } path={['/projecten']}><ProjectsOverviewPage /></ModalRoute>
