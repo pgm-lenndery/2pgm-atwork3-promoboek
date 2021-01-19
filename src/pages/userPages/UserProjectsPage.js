@@ -5,7 +5,6 @@ import { useAuth, useFirestoreQuery, useLazyFirestoreQuery } from '../../firebas
 export default () => {
     const { user } = useAuth()
     const { data: projectsData } = useFirestoreQuery(fs => fs.collection('projects').where('creator', '==', user.uid))
-    console.log({ projectsData })
     
     if (!projectsData) return <Loader />
     else return (

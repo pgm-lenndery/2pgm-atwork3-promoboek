@@ -54,11 +54,25 @@
         height: 2.3rem;
         @include box('t');
         
-        .crumbs__separator {
-            &:last-child {
+        .crumbs__crumb {
+            &:hover .crumbs__crumb-label {
+                color: $purple500;
+            }
+            
+            .crumbs__separator {
+                padding-left: 1rem;
+            }
+            
+            &:last-child .crumbs__separator {
                 display: none;
             }
         }
+        
+        // .crumbs__separator {
+        //     &:last-child {
+        //         display: none;
+        //     }
+        // }
     }
     
     &__actions {

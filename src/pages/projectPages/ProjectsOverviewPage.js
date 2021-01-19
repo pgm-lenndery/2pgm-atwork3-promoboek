@@ -1,67 +1,46 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import dayjs from 'dayjs'
+import { Modal, SectionFilter, Works, Anker, Loader } from '../../components';
+import { useAuth, useFirebaseStorage, useFirestoreQuery } from '../../firebase';
 
-import { Loader, Modal } from '../../components';
-import { useFirestoreQuery, useLazyFirestoreQuery } from '../../firebase';
-
-const dummImage = 'https://res.cloudinary.com/lennertderyck/image/upload/v1605652329/Schermafbeelding_2020-11-17_om_23.22.51_h9rh7h.png';
+const extraFilterOptions = [
+    { label: 'alles', checked: true, abbr: null }
+]
 
 export default () => {
-    const { id } = useParams();
-    const { data: projectData } = useFirestoreQuery(fs => fs.doc(`projects/${ id }`))
-    const { fetchQuery: fetchCreatorData, data: creatorData } = useLazyFirestoreQuery();
-    const { fetchQuery: fetchCourseData, data: courseData } = useLazyFirestoreQuery();
+    const { noUserFound } = useAuth()
+    const { data: projectsData, refetch } = useFirestoreQuery(fs => fs.collection('projects'));
+    const { data: coursesListData = [] } = useFirestoreQuery(fs => fs.collection('courses'));
+    const [ filter, setFilter ] = useState({ abbr: null });
     
     useEffect(() => {
-        if (projectData) {
-            fetchCreatorData(fs => fs.doc(`users/${projectData.creator}`))
-            fetchCourseData(fs => fs.doc(`courses/${projectData.course}`))
+        if (filter.abbr === null) refetch()
+        else {
+            refetch(fs => fs.collection('projects').where('course', '==', filter.id))
         }
-    }, [projectData])
-        
-    if (!projectData) return <Loader />
-    else {
-        const { title, intro, description, academicYear } = projectData;
-        return (
-            <Modal title={ title } subtitle={ intro } 
-                // beforeHeaderComponents={
-                //     <img src={ dummImage } className="box--b" width="100%" height="74px" alt=""/>
-                // }
-                afterHeaderComponents={
-                    <img src={ dummImage } width="100%" height={ 200 } alt=""/>
-                }
-            >
-                <div className="row">
-                    <div className="col-12 col-md-8 col-xl-9">
-                        <div className="label small mb-3">Over deze opdracht</div>
-                        { description }
-                    </div>
-                    <div className="col-12 col-md-4 col-xl-3">
-                        <div className="mb-3">
-                            <p className="label small mb-2">Periode</p>
-                            { dayjs(academicYear.seconds * 1000).format('YYYY') }
-                        </div>
-                        <div className="mb-3">
-                            <p className="label small mb-2">Vak</p>
-                            {
-                                !courseData ?
-                                <Loader /> :
-                                <> { courseData.label }</>
-                            }
-                        </div>
-                        <div className="mb-3"> 
-                            <p className="label small mb-2">Student</p>
-                            {
-                                !creatorData ?
-                                <Loader /> :
-                                <>{ creatorData.firstName } { creatorData.lastName }</>
-                            }
-                        </div>
-                        
-                    </div>
-                </div>
-            </Modal>
-        )
-    }
+    }, [filter])
+    
+    return (
+        <Modal 
+            title="Cases &amp; opdrachten" 
+            subtitle="werk van onze studenten"
+            afterHeaderComponents={
+                <SectionFilter 
+                    label="filter projecten" 
+                    spacing={ true } 
+                    items={[ ...extraFilterOptions, ...coursesListData ]} 
+                    float={ false }
+                    onSelect={ setFilter }
+                />
+            }
+        >
+            {
+                projectsData?.length === 0 ?
+                <div>
+                    <div className="label small text-center">Bekijk een ander vak</div>
+                    <h3 className="text-center">Geen projecten gevonden</h3>
+                </div> : <Works data={ projectsData } />
+            }
+        </Modal>
+    )
 }

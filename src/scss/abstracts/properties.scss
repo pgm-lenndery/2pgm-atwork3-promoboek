@@ -122,6 +122,11 @@
     cursor: pointer;
 }
 
+.text--body { @include bodyContent; }
+.text--lowercase { text-transform: lowercase !important;}
+.text--uppercase { text-transform: uppercase !important;}
+.text--initial { text-transform: initial !important;}
+
 @for $i from 0 through 12 {
     .level--#{$i} {
         z-index: #{$i};

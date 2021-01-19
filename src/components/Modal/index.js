@@ -6,7 +6,7 @@ import './index.scss';
 
 export default ({ children, title = null, subtitle = null, afterHeaderComponents, beforeHeaderComponents, ignorePadding }) => { 
     const { pathname } = useLocation();
-    const locationHost = window.location.host;
+    const pathnameSplit = pathname.replace('/', '').split('/');
     
     /**
      * TODO: when minimalizing, save as tab on bottom with url as parameter
@@ -24,7 +24,7 @@ export default ({ children, title = null, subtitle = null, afterHeaderComponents
             </div>
             <div className="boxModal__wrapper">
                 { beforeHeaderComponents }
-                { (title || subtitle) && <div className="boxModal__header">
+                {(title || subtitle) && <div className="boxModal__header box">
                     <h1>{ title }</h1>
                     <p className="label">{ subtitle }</p>
                 </div>}
@@ -34,9 +34,11 @@ export default ({ children, title = null, subtitle = null, afterHeaderComponents
                 </div>
                 <div className="boxModal__crumbs crumbs">
                     <span className="crumbs__crumb crumbs__crumb--root">promobook</span> <span className="crumbs__separator">❯</span>
-                    {pathname.replace('/', '').split('/').map((p, index) => <div key={ index }>
-                        <span className="crumbs__crumb">{ p }</span> <span className="crumbs__separator">❯</span>
-                    </div>)}
+                    {pathnameSplit.map((p, index) =>
+                        <Link to={ `${pathname.split('/').splice(0, index+2).join('/')}` } className="crumbs__crumb" key={ index }>
+                            <span className="crumbs__crumb-label">{ p }</span> <span className="crumbs__separator">❯</span>
+                        </Link>
+                    )}
                 </div>
             </div>
         </div>
