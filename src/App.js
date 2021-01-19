@@ -80,7 +80,7 @@ const AppWrapper = () => {
                                         key={ s.id } 
                                         firstName={ s.firstName }
                                         lastName={ s.lastName } 
-                                        avatar={ 'https://i.fok.nl/userpics/155136/vanleemhuyzen.jpg' }
+                                        avatar={ s.avatar }
                                     />
                                 )
                             }
