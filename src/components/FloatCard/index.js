@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PurpleRain from '../PurpleRain';
 import { ArrowRight } from 'react-feather';
 import { Link } from 'react-router-dom';
 
 import './index.scss';
-import { useFirestoreQuery } from '../../firebase';
+import { useFirebaseStorage, useFirestoreQuery } from '../../firebase';
 
 export default ({ children: content, data }) => {
-    const {  } = useFirestoreQuery(fs => fs.doc(`courses/${ data.course }`))
+    const { getDownloadURL, state: { data: projectBannerUrl } } = useFirebaseStorage();
+    
+    useEffect(() => {
+        if (data.banner) getDownloadURL(data.banner);
+    }, [])
+    
     return (
         <Link to={ `/projecten/${ data.id }` } className="floatCard">
             <div className="floatCard__head">
@@ -23,7 +28,9 @@ export default ({ children: content, data }) => {
                     <p>{ data.content }</p>
                 </div>
                 <PurpleRain>
-                    <img src="https://pgmgent-1920-students.github.io/case1-pgm-website-baas-pgm-lenndery/src/images/cases/tronald%20dump/thumb.png" alt=""/>
+                    <img src={
+                        projectBannerUrl || "https://pgmgent-1920-students.github.io/case1-pgm-website-baas-pgm-lenndery/src/images/cases/tronald%20dump/thumb.png"
+                    } alt=""/>
                 </PurpleRain>
             </div>
         </Link>
