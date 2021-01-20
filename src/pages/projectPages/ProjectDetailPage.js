@@ -2,12 +2,13 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import dayjs from 'dayjs'
 
-import { Loader, Modal } from '../../components';
-import { useFirebaseStorage, useFirestoreQuery, useLazyFirestoreQuery } from '../../firebase';
+import { Loader, Modal, Anker } from '../../components';
+import { useFirebaseStorage, useFirestoreQuery, useLazyFirestoreQuery, useAuth } from '../../firebase';
 
 const dummImage = 'https://res.cloudinary.com/lennertderyck/image/upload/v1605652329/Schermafbeelding_2020-11-17_om_23.22.51_h9rh7h.png';
 
 export default () => {
+    const { user } = useAuth();
     const { id } = useParams();
     const { data: projectData } = useFirestoreQuery(fs => fs.doc(`projects/${ id }`))
     const { fetchQuery: fetchCreatorData, data: creatorData } = useLazyFirestoreQuery();
@@ -24,7 +25,7 @@ export default () => {
         
     if (!projectData) return <Loader />
     else {
-        const { title, intro, description, academicYear } = projectData;
+        const { title, intro, description, academicYear, } = projectData;
         return (
             <Modal title={ title } subtitle={ intro } 
                 afterHeaderComponents={
@@ -35,6 +36,11 @@ export default () => {
                     <div className="col-12 col-md-8 col-xl-9">
                         <div className="label small mb-3">Over deze opdracht</div>
                         <div className="text--body">{ description }</div>
+                        { user.uid === projectData.creator ?
+                          <Anker title="Project aanpassen" href={`/projecten/${id}/edit`} />
+                          // <></>
+                        : null
+                        }
                     </div>
                     <div className="col-12 col-md-4 col-xl-3">
                         <div className="mb-3">
