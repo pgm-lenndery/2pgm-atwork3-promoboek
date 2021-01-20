@@ -24,3 +24,4 @@ export { default as FormSelect} from './FormSelect';
 export { default as Fab } from './Fab';
 export { default as EditField } from './EditField';
 export { default as UserAvatar } from './UserAvatar';
+export { default as Footer } from './Footer';
