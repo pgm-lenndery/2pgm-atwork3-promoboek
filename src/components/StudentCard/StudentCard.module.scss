@@ -2,8 +2,15 @@
 
 .card {
     position: relative;
-    height: 240px;
+    // width: 200px;
+    // height: 240px;
+    width: 250px;
+    height: 300px;
     @include box('all');
+}
+
+.simple {
+    border: none;
 }
 
 .card__featureImg {
@@ -28,5 +35,6 @@
     
     * {
         margin-bottom: 0;
+        opacity: 1;
     }
 }

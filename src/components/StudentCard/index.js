@@ -3,7 +3,7 @@ import { useFirebaseStorage } from '../../firebase';
 import PurpleRain from '../PurpleRain';
 import styles from './StudentCard.module.scss';
 
-export default ({ firstName, lastName, avatar }) => {
+export default ({ firstName, lastName, avatar, theme = 'default' }) => {
     const { getDownloadURL, state: { data: avatarUrl } } = useFirebaseStorage();
     
     useEffect(() => {
@@ -11,10 +11,9 @@ export default ({ firstName, lastName, avatar }) => {
     }, [])
     
     return (
-        <div className={ styles.card }>
+        <div className={ `${ styles.card } ${ styles[theme] }` }>
             <div className={ styles.card__body }> 
-                <p>{ firstName }</p>
-                <p>{ lastName }</p>
+                <p>{ firstName }<br /><span className="label small">{ lastName }</span></p>
             </div>
             <PurpleRain className={ styles.card__featureImg}>
                 <img src={ avatarUrl } alt=""/>

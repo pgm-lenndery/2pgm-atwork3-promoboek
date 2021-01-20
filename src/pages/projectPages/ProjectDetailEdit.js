@@ -17,21 +17,20 @@ export default () => {
     const [ fileToUpload, setFileToUpload ] = useState();
 
     const handleEditProject = ({ projectUrl, gitUrl, academicYear, banner: [ bannerFile ], ...otherValues }) => {
-      setFileToUpload(bannerFile);
-      updateDocument({
-          ...otherValues,
-          academicYear: new Date(academicYear),
-          links: {
-              project: projectUrl,
-              git: gitUrl
-          }
-      });
-      
-  }
+        setFileToUpload(bannerFile);
+        updateDocument({
+            ...otherValues,
+            academicYear: new Date(academicYear),
+            links: {
+                project: projectUrl,
+                git: gitUrl
+            }
+        });
+    }
 
-  useEffect(() => {
-      if (updateDocState === 'success') history.push(`/projecten/${id}`);
-  }, [updateDocState])
+    useEffect(() => {
+        if (updateDocState === 'success') history.push(`/projecten/${id}`);
+    }, [updateDocState])
         
     if (!projectData) return <Loader />
     else {

@@ -27,7 +27,6 @@ export default () => {
             afterHeaderComponents={
                 <SectionFilter 
                     label="filter projecten" 
-                    spacing={ true } 
                     items={[ ...extraFilterOptions, ...coursesListData ]} 
                     float={ false }
                     onSelect={ setFilter }
