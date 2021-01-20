@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Loader, Modal, Wrapper, Form, FormButton, FormField, EditField } from '../../components';
-import { useAuth, useFirebaseStorage, useFirestoreCrud } from '../../firebase';
+import { useAuth, useFirebaseStorage, useFirestoreCrud, auth } from '../../firebase';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { UserProjectsPage } from '..';
 
@@ -21,7 +21,9 @@ export default () => {
         ...otherData
       }, `users/${ user.uid }`)
 
+      auth.currentUser.updateEmail(email);
       setEditMode(false);
+      
     }
     
     return (
