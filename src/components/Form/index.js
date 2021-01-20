@@ -4,7 +4,7 @@ import Loader from 'react-loader-spinner'
 
 import styles from './Form.module.scss';
 
-export default ({ children, onSubmit, loading = false, defaultValues = {}, onChange }) => {
+export default ({ children, onSubmit, loading = false, defaultValues = {}, onChange, className = '' }) => {
     const { handleSubmit, setValue,  } = useFormContext();
     
     useEffect(() => {
@@ -14,7 +14,7 @@ export default ({ children, onSubmit, loading = false, defaultValues = {}, onCha
     }, [])
     
     return (
-        <form className={ `${styles.form} ${ loading ? 'form--loading' : ''}` } onChange={onChange && handleSubmit(onChange)} onSubmit={handleSubmit(onSubmit)}>
+        <form className={ `${styles.form} ${ loading ? 'form--loading' : ''} ${ className }` } onChange={onChange && handleSubmit(onChange)} onSubmit={handleSubmit(onSubmit)}>
             { children }
             {loading && <div className={ styles.loadingOverlay }>
                 <Loader type="Oval" color="#7f47dd" height={60} width={60} className="react-loader"/>

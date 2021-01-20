@@ -87,7 +87,7 @@ export const useFirebaseStorage = (storagePath = '') => {
             upload.on('state_changed', snapshot => {
                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                 
-                dispatch({ type: "success", payload: {
+                dispatch({ type: "loading", payload: {
                     progress: progress,
                     ext: ext,
                     path: composedPath
@@ -111,7 +111,7 @@ export const useFirebaseStorage = (storagePath = '') => {
                     path: composedPath,
                     uri: await uri
                 }})
-                dispatch({ type: "idle" });
+                // dispatch({ type: "idle" });
             })         
         } catch (err) {
             dispatch({ type: "error", payload: returnedState });

@@ -23,3 +23,4 @@ export { default as Loader} from './Loader';
 export { default as FormSelect} from './FormSelect';
 export { default as Fab } from './Fab';
 export { default as EditField } from './EditField';
+export { default as UserAvatar } from './UserAvatar';
