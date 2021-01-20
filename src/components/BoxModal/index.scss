@@ -13,10 +13,7 @@
     &::after {
         content: '';
         position: absolute;
-        top: 0px;
-        bottom: 0px;
-        left: 0px;
-        right: 0px;
+        @include positionStretch;
         background-color: black;
         @include box('all');
         z-index: -1;

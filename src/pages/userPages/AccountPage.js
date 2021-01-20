@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Loader, Modal, Wrapper, Form, FormButton, FormField, EditField, FormFileUpload } from '../../components';
+import { Button, Loader, Modal, Wrapper, Form, FormButton, FormField, EditField, FormFileUpload, UserAvatar } from '../../components';
 import { useAuth, useFirebaseStorage, useFirestoreCrud, auth, useFirestoreQuery } from '../../firebase';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { UserProjectsPage } from '..';
@@ -52,11 +52,7 @@ export default () => {
                     <TabPanel>
                         <div className="row">
                             <div className="col-12 col-lg-3">
-                                { !userAvatar ? <Loader /> : <img width="100%" src={ userAvatar } />}
-                                <Form onChange={v => setUpdatedAvatar(v.avatar[0])}>
-                                    {/* <FormField name="test" label="test" /> */}
-                                    <FormFileUpload label="Avatar" name="avatar" />
-                                </Form>
+                                <UserAvatar />
                             </div>
                             <div className="col-12 col-lg-9">
                                 { editMode ? 

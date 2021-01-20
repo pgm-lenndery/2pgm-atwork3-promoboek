@@ -1,16 +1,14 @@
 @import '../../scss/abstracts';
 
-.field {
+.defaultField, .field {
     position: relative;
     display: block;
     margin-bottom: 2rem;
-    padding: 2rem;
-    border: 2px dashed $purple500;
     background-color: transparent;
+    border: 2px dashed $purple500;
     
     & + label {
         margin-top: .8rem;
-        
     }
     
     &.dragOver {
@@ -47,4 +45,21 @@
         font-size: .8rem;
         @include textModern;
     }
+}
+
+.defaultField {
+    padding: 2rem;
+    border: 2px dashed $purple500;
+}
+
+.field {
+    border-color: transparent;
+    
+    &.dragOver {
+        border-color: $purple500;
+    }
+    
+    // &.hasFiles {
+        // border: none;
+    // }
 }

@@ -13,7 +13,6 @@ export default ({ path, children, exact = false }) => {
     });
     
     useEffect(() => {
-        console.log(error);
         if (error) translateError(error);
         if (error) console.log('Deze gegevens kloppen niet')
     }, [error]);
