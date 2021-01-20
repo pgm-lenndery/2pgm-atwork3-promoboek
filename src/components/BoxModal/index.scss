@@ -38,6 +38,11 @@
         overflow: scroll;
     }
     
+    &__scrollable {
+        max-height: calc(80vh - 2.3rem);
+        overflow: scroll;
+    }
+    
     &__body {
         padding: 3rem;
         

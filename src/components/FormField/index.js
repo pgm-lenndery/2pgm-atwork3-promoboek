@@ -4,7 +4,7 @@ import styles from './FormField.module.scss';
 import dayjs from 'dayjs'
 
 export default ({ type = 'text', name, label, placeholder=" " }) => {
-    const { register } = useFormContext();
+    const { register, getValues } = useFormContext();
     
     const today = dayjs().format('YYYY-MM-DD')
     return (

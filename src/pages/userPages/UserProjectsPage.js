@@ -9,6 +9,10 @@ export default () => {
     if (!projectsData) return <Loader />
     else return (
         <>
+            <div className="d-flex align-items-center justify-content-between mb-5">
+                <h4>Je kan nog { 3 - (projectsData?.length || 3) }<br/>project(en) toevoegen</h4>
+                <Anker title="Project toevoegen" href="/account/projecten/nieuw" className="mt-0"/>
+            </div>
             {
                 projectsData.length === 0 ? 
                 <div>

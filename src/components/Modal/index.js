@@ -23,14 +23,16 @@ export default ({ children, title = null, subtitle = null, afterHeaderComponents
                 <Link className="boxModal__action" to='/' onClick={() => minimalizeModal()}><Minus /></Link>
             </div>
             <div className="boxModal__wrapper">
-                { beforeHeaderComponents }
-                {(title || subtitle) && <div className="boxModal__header box">
-                    <h1>{ title }</h1>
-                    <p className="label">{ subtitle }</p>
-                </div>}
-                { afterHeaderComponents }
-                <div className={ `boxModal__body ${ignorePadding ? 'boxModal__body--ignore-padding' : ''}` }>
-                    { children }
+                <div className="boxModal__scrollable">   
+                    { beforeHeaderComponents }
+                    {(title || subtitle) && <div className="boxModal__header box">
+                        <h1>{ title }</h1>
+                        <p className="label">{ subtitle }</p>
+                    </div>}
+                    { afterHeaderComponents }
+                    <div className={ `boxModal__body ${ignorePadding ? 'boxModal__body--ignore-padding' : ''}` }>
+                        { children }
+                    </div>
                 </div>
                 <div className="boxModal__crumbs crumbs">
                     <span className="crumbs__crumb crumbs__crumb--root">promobook</span> <span className="crumbs__separator">❯</span>
