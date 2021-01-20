@@ -12,6 +12,7 @@ import { ProjectsOverviewPage, StudentsOverviewPage, RegisterPage, AccountPage, 
 import 'dayjs/locale/nl-be';
 
 const App = () => {
+  console.log('%c SITE MADE BY: LENNERT DE RYCK & JESSE VANDERMEERSCH ', 'color: #7f47dd');
     const [ modal, setModal ] = useState(false);    
     const methods = useForm();
     

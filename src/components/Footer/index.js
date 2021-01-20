@@ -1,9 +1,14 @@
 import React from 'react';
 import { Container } from '../../components';
+import dayjs from 'dayjs';
 
 import './index.scss';
 
 export default ({ footerText }) => {
+
+  const currentYear = dayjs().format('YYYY');
+  const nextYear = dayjs(currentYear).add(1, 'year').format('YYYY');
+
   return (
       <div className="footer">
           <Container
@@ -23,6 +28,10 @@ export default ({ footerText }) => {
                 </div>
               </div>
             </div>
+          </Container>
+          <Container className="copyright-container">
+            <p className="small mb-0">INDUSTRIEWEG 232, 9030 MARIAKERKE (GENT)</p>
+            <p className="label small mb-0">ALLE RECHTEN VOORBEHOUDEN © ARTEVELDEHOGESCHOOL { currentYear } - { nextYear }</p>
           </Container>
       </div>
   )
