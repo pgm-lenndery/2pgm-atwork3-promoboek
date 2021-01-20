@@ -7,7 +7,7 @@ import { useForm, FormProvider } from "react-hook-form";
 import { AuthProvider, useAuth, useFirestoreQuery } from './firebase'
 import { Works, SectionFilter, SectionHeader, Section, ProtectedModalRoute, Loader, StudentCard, Fab, Anker, Container } from "./components";
 import { ModalContext } from './contexts';
-import { ProjectsOverviewPage, StudentsOverviewPage, RegisterPage, AccountPage, UserNewProjectPage, ProjectDetailPage } from './pages';
+import { ProjectsOverviewPage, StudentsOverviewPage, RegisterPage, AccountPage, UserNewProjectPage, ProjectDetailPage, ProjectDetailEdit } from './pages';
 
 import 'dayjs/locale/nl-be';
 
@@ -95,7 +95,7 @@ const AppWrapper = () => {
             </div>
             <ModalRoute exact={ true } path={['/projecten']}><ProjectsOverviewPage /></ModalRoute>
             <ModalRoute exact={ true } path={['/projecten/:id']}><ProjectDetailPage /></ModalRoute>
-            <ModalRoute exact={ true } path={['/projecten/:id/edit']}><ProjectDetailPage /></ModalRoute>
+            <ModalRoute exact={ true } path={['/projecten/:id/edit']}><ProjectDetailEdit /></ModalRoute>
             <ModalRoute exact={ true } path={['/studenten/:id']}><StudentsOverviewPage /></ModalRoute>
             <ModalRoute exact={ true } path={['/account/registreren']}><RegisterPage /></ModalRoute>
             <ProtectedModalRoute exact={ true } path={[ '/account' ]}><AccountPage /></ProtectedModalRoute>

@@ -60,7 +60,7 @@ export default () => {
                             </div>
                             <div className="col-12 col-lg-9">
                                 { editMode ? 
-                                    <Form onSubmit={handleEdit}>
+                                    <Form onSubmit={handleEdit} defaultValues={{ firstName: user.firstName, lastName: user.lastName, email: user.email }}>
                                         <div className="row form-element">
                                             <div className="col">
                                                 <FormField name="firstName" label="Voornaam" type="text"/>
@@ -70,7 +70,7 @@ export default () => {
                                             </div>
                                         </div>
                                         <FormField name="email" label="Email" type="text"/>
-                                        <FormButton title="Edit" />
+                                        <FormButton title="Edit"/>
                                         <Button title="Cancel" onClick={() => setEditMode(false)} />
                                     </Form> :
                                     <>
