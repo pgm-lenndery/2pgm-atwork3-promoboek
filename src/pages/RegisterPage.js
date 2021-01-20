@@ -35,7 +35,7 @@ export default () => {
         <Modal title="Registreren" subtitle="maak een account">
             {  registeringUserStatus === 'success' ?
                 <div>Loading</div> :
-                <Form onSubmit={handleRegistration} loading={ registeringUserStatus === 'loading' }>
+                <Form onSubmit={handleRegistration} loading={ registeringUserStatus === 'loading' } defaultValues={{ email: 'smeerkaas@gmail.com' }}>
                     <FormFileUpload name="avatar" label="Avatar"/>
                     <div className="row form-element">
                         <div className="col">

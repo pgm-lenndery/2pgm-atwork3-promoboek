@@ -51,7 +51,6 @@ export default function Fab({ href, label, box }) {
 
   return (
     <Wrapper className="box--a">
-      { console.log(data) }
       <Link to={href}>
         <p>{ user.firstName ? user.firstName : label }</p>
         { user.avatar ? <img className="box--l" src={data} /> : <ArrowRight className="box--l"/> }

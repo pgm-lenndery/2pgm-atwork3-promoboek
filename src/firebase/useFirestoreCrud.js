@@ -62,7 +62,6 @@ export const useFirestoreCrud = (documentPath = '') => {
             const response = await addedDocument.get()
             const responseData = await response.data()
             dispatch({ type: "success", payload: {...responseData, id: response.id} })
-            // dispatch({ type: "idle" }); 
         } catch (err) {
             dispatch({ type: "error", payload: err })
         }
@@ -80,7 +79,6 @@ export const useFirestoreCrud = (documentPath = '') => {
         } catch (err) {
             dispatch({ type: "error", payload: err })
         }
-        dispatch({ type: "idle" });
     }
     
     /**

@@ -33,6 +33,7 @@ export default ({ data }) => {
         <Container 
             theme="works" 
             fluid 
+            ignorePadding
             onMouseOver={e => setHovered(e)} 
             onMouseOut={e => removeFocus(e)}
         >

@@ -32,7 +32,7 @@ export default () => {
                                 { !userAvatar ? <Loader /> : <img width="100%" src={ userAvatar } />}
                             </div>
                             <div className="col-12 col-lg-9">
-                                <h3 className="text--initial">{ user.firstName } { user.lastName }</h3>
+                                <h3 className="text--initial-case">{ user.firstName } { user.lastName }</h3>
                                 <p className="small label">{ user.email }</p>
                                 <Button title="Afmelden" onClick={logout} />
                             </div>

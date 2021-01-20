@@ -5,7 +5,7 @@ import { ModalRoute, ModalContainer } from 'react-router-modal';
 import { useForm, FormProvider } from "react-hook-form";
 
 import { AuthProvider, useAuth, useFirestoreQuery } from './firebase'
-import { Works, SectionFilter, SectionHeader, Section, ProtectedModalRoute, Loader, StudentCard, Fab, Anker } from "./components";
+import { Works, SectionFilter, SectionHeader, Section, ProtectedModalRoute, Loader, StudentCard, Fab, Anker, Container } from "./components";
 import { ModalContext } from './contexts';
 import { ProjectsOverviewPage, StudentsOverviewPage, RegisterPage, AccountPage, UserNewProjectPage, ProjectDetailPage } from './pages';
 
@@ -52,7 +52,7 @@ const AppWrapper = () => {
                 <header className="App-header">
                 </header>
                 <main>
-                    <SectionHeader actionLabel="ontdek ze allemaal" to="/label">cases &amp;<br/>opdrachten</SectionHeader>
+                    <SectionHeader actionLabel="ontdek ze allemaal" to="/projecten">cases &amp;<br/>opdrachten</SectionHeader>
                     <SectionFilter 
                         label="filter projecten" 
                         spacing={ true } 
@@ -61,14 +61,18 @@ const AppWrapper = () => {
                         config={{ value: 'llama' }}
                         onSelect={ setFilter }
                     />
-                    <Section spacing="b"> 
-                        {
-                            projectsData?.length === 0 ?
-                            <div>
-                                <div className="label small text-center">Bekijk een ander vak</div>
-                                <h3 className="text-center">Geen projecten gevonden</h3>
-                            </div> : <Works data={ projectsData } />
-                        }
+                    <Section spacing="b">
+                        <Container
+                            fluid
+                        >
+                            {
+                                projectsData?.length === 0 ?
+                                <div>
+                                    <div className="label small text-center">Bekijk een ander vak</div>
+                                    <h3 className="text-center">Geen projecten gevonden</h3>
+                                </div> : <Works data={ projectsData } />
+                            }
+                        </Container> 
                     </Section>
                     <SectionHeader actionLabel="ontdek ze allemaal" to="/studenten">onze &amp;<br/>studenten</SectionHeader>
                     <Section spacing="b"> 
@@ -91,6 +95,7 @@ const AppWrapper = () => {
             </div>
             <ModalRoute exact={ true } path={['/projecten']}><ProjectsOverviewPage /></ModalRoute>
             <ModalRoute exact={ true } path={['/projecten/:id']}><ProjectDetailPage /></ModalRoute>
+            <ModalRoute exact={ true } path={['/projecten/:id/edit']}><ProjectDetailPage /></ModalRoute>
             <ModalRoute exact={ true } path={['/studenten/:id']}><StudentsOverviewPage /></ModalRoute>
             <ModalRoute exact={ true } path={['/account/registreren']}><RegisterPage /></ModalRoute>
             <ProtectedModalRoute exact={ true } path={[ '/account' ]}><AccountPage /></ProtectedModalRoute>

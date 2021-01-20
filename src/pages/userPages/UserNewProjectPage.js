@@ -1,14 +1,18 @@
-import React, { useEffect } from 'react';
-import { BoxCard, Works, Button, Form, FormField, FormButton, Modal, Anker, FormSelect, Loader } from '../../components';
-import { useAuth, useFirestoreCrud, useFirestoreQuery } from '../../firebase';
+import React, { useEffect, useState } from 'react';
+import { Form, FormField, FormButton, Modal, Anker, FormSelect, Loader, FormFileUpload } from '../../components';
+import { useAuth, useFirebaseStorage, useFirestoreCrud, useFirestoreQuery } from '../../firebase';
 
 export default () => {   
     const { user } = useAuth();
     const { addDocument, state: { status, data } } = useFirestoreCrud('projects');
+    const { updateDocument: updateUserBanner, state: { status: updateUserBannerStatus, data: updateUserBannerData } } = useFirestoreCrud();
     const { data: coursesListData } = useFirestoreQuery(fs => fs.collection('courses'));
     const { data: { length: createdProjectsAmount = 3 } = {} } = useFirestoreQuery(fs => fs.collection('projects').where('creator', '==', user.uid));
+    const { uploadFile: uploadBanner, state: { status: uploadBannerStatus, data: uploadBannerData } } = useFirebaseStorage();
+    const [ fileToUpload, setFileToUpload ] = useState();
     
-    const handleNewProject = ({ projectUrl, gitUrl, academicYear, ...otherValues }) => {
+    const handleNewProject = ({ projectUrl, gitUrl, academicYear, banner: [ bannerFile ], ...otherValues }) => {
+        setFileToUpload(bannerFile);
         addDocument({
             ...otherValues,
             academicYear: new Date(academicYear),
@@ -20,8 +24,18 @@ export default () => {
         });
     }
     
-    if (status === 'success') return (
-        <Modal 
+    useEffect(() => {
+        if (status === 'success') uploadBanner(fileToUpload, `projects/${data.id}`);
+    }, [status])
+    
+    useEffect(() => {
+        if (uploadBannerStatus === 'success') updateUserBanner({
+            banner: uploadBannerData.path
+        }, `projects/${data.id}`)
+    }, [uploadBannerStatus])
+        
+    if (status === 'success' && updateUserBannerStatus === 'success') return (
+        <Modal
             title="Nieuw project"
             subtitle="voeg werk toe aan je profiel"
         >
@@ -42,7 +56,8 @@ export default () => {
                     <h3 className="text-center">Je voegde al 3 projecten toe</h3>
                     <p className="mb-0 mt-3 text-center text--body">Verwijder een ander project om een nieuw toe te voegen.</p>
                 </div> :
-                <Form onSubmit={handleNewProject} loading={ status === 'loading' }>
+                <Form onSubmit={ handleNewProject } loading={ status === 'loading' || updateUserBannerStatus === 'loading' }>
+                    <FormFileUpload name="banner" label="Banner"/>
                     <FormField name="title" label="Project naam" />
                     <FormField name="intro" label="Introductie" />
                     <FormField name="description" label="Over dit project" />
