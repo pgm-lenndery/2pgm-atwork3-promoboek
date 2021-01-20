@@ -4,7 +4,7 @@ import { Loader } from '..';
 import { useFirebaseStorage } from '../../firebase';
 import styles from './FormFileUpload.module.scss';
 
-export default ({ name, label, multiple = false, loading = false }) => {
+export default ({ name, label, multiple = false, loading = false, placeholder }) => {
     const { register } = useFormContext();
     const [ selectedFile, setSelectedFile ] = useState([]);
     const [ draggedOver, setDraggedOver ] = useState(false);
@@ -17,11 +17,16 @@ export default ({ name, label, multiple = false, loading = false }) => {
     const handleDragOver = e => setDraggedOver(true)
     const handleDragEnd = e => setDraggedOver(false)
     
-    return (
-        <label className={ `${styles.field} form-element ${draggedOver ? styles.dragOver : ''} ${selectedFile.length > 0 ? styles.hasFiles : ''}`} onDragEnter={handleDragOver} onDragLeave={handleDragEnd}>
+    if (loading) return <Loader />
+    else return (
+        <label 
+            className={ `${ placeholder ? styles.field : styles.defaultField} form-element ${draggedOver ? styles.dragOver : ''} ${selectedFile.length > 0 ? styles.hasFiles : ''}`} 
+            onDragEnter={handleDragOver} 
+            onDragLeave={handleDragEnd}
+        >
             <div>
                 {
-                    !loading ?
+                    placeholder ? placeholder :
                     <>
                         <div>
                             <h4>{ label }</h4>
@@ -30,8 +35,7 @@ export default ({ name, label, multiple = false, loading = false }) => {
                         {!selectedFile ? <small>Geen bestand geselecteerd</small> : <ul className={ styles.list }>{ selectedFile.map((f, index) =>
                             <li key={ index }>{ f.name }</li>
                         )}</ul>}
-                    </> :
-                    <Loader />
+                    </>
                 }
             </div>
             <input ref={ register } type="file" name={ name } onChange={(e, event) => handleDrop(e, event)}/>

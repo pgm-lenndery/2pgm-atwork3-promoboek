@@ -27,9 +27,6 @@ export default () => {
         const { title, intro, description, academicYear } = projectData;
         return (
             <Modal title={ title } subtitle={ intro } 
-                // beforeHeaderComponents={
-                //     <img src={ dummImage } className="box--b" width="100%" height="74px" alt=""/>
-                // }
                 afterHeaderComponents={
                     <img src={ bannerUrl || dummImage } width="100%" height={ 200 } alt=""/>
                 }
