@@ -1,4 +1,5 @@
 export { default as ProjectDetailPage } from './projectPages/ProjectDetailPage';
+export { default as ProjectDetailEdit } from './projectPages/ProjectDetailEdit';
 export { default as ProjectsOverviewPage } from './projectPages/ProjectsOverviewPage';
 export { default as StudentsOverviewPage } from './StudentsOverviewPage';
 export { default as RegisterPage } from './RegisterPage';
