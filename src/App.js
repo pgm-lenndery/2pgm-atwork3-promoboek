@@ -5,7 +5,7 @@ import { ModalRoute, ModalContainer } from 'react-router-modal';
 import { useForm, FormProvider } from "react-hook-form";
 
 import { AuthProvider, useAuth, useFirestoreQuery } from './firebase'
-import { Works, SectionFilter, SectionHeader, Section, ProtectedModalRoute, Loader, StudentCard, Fab, Anker, Container } from "./components";
+import { Works, SectionFilter, SectionHeader, Section, ProtectedModalRoute, Loader, StudentCard, Fab, Anker, Container, StudentsList, Footer } from "./components";
 import { ModalContext } from './contexts';
 import { ProjectsOverviewPage, StudentsOverviewPage, RegisterPage, AccountPage, UserNewProjectPage, ProjectDetailPage, ProjectDetailEdit } from './pages';
 
@@ -52,6 +52,10 @@ const AppWrapper = () => {
                 <header className="App-header">
                 </header>
                 <main>
+                    <SectionHeader actionLabel="ontdek ze allemaal" to="/studenten">onze &amp;<br/>studenten</SectionHeader>
+                    <Section> 
+                        <StudentsList />
+                    </Section>
                     <SectionHeader actionLabel="ontdek ze allemaal" to="/projecten">cases &amp;<br/>opdrachten</SectionHeader>
                     <SectionFilter 
                         label="filter projecten" 
@@ -74,24 +78,9 @@ const AppWrapper = () => {
                             }
                         </Container> 
                     </Section>
-                    <SectionHeader actionLabel="ontdek ze allemaal" to="/studenten">onze &amp;<br/>studenten</SectionHeader>
-                    <Section spacing="b"> 
-                        <div className="student-list">
-                            {
-                                !studentsData ? <Loader /> : 
-                                studentsData.map(s => 
-                                    <StudentCard
-                                        key={ s.id } 
-                                        firstName={ s.firstName }
-                                        lastName={ s.lastName } 
-                                        avatar={ s.avatar }
-                                    />
-                                )
-                            }
-                        </div>
-                    </Section>
                     { user ? <Fab label="account" href="/account"/> : null }
                 </main>
+                <Footer footerText="pgm.gent is een website van de opleiding graduaat programmeren van arteveldehogeschool"/>
             </div>
             <ModalRoute exact={ true } path={['/projecten']}><ProjectsOverviewPage /></ModalRoute>
             <ModalRoute exact={ true } path={['/projecten/:id']}><ProjectDetailPage /></ModalRoute>
