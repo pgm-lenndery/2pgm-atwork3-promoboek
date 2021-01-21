@@ -34,13 +34,9 @@ export default () => {
             >
                 <div className="row">
                     <div className="col-12 col-md-8 col-xl-9">
+                        { user.uid === projectData.creator && <Anker className="mt-0 mb-4" title="Project aanpassen" href={`/projecten/${id}/edit`} />}
                         <div className="label small mb-3">Over deze opdracht</div>
                         <div className="text--body">{ description }</div>
-                        { user.uid === projectData.creator ?
-                          <Anker title="Project aanpassen" href={`/projecten/${id}/edit`} />
-                          // <></>
-                        : null
-                        }
                     </div>
                     <div className="col-12 col-md-4 col-xl-3">
                         <div className="mb-3">

@@ -3,6 +3,7 @@ import { Button, Loader, Modal, Wrapper, Form, FormButton, FormField, EditField,
 import { useAuth, useFirebaseStorage, useFirestoreCrud, auth, useFirestoreQuery } from '../../firebase';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { UserProjectsPage } from '..';
+import dayjs from 'dayjs';
 
 
 export default () => {
@@ -56,16 +57,30 @@ export default () => {
                             </div>
                             <div className="col-12 col-lg-9">
                                 { editMode ? 
-                                    <Form onSubmit={handleEdit} defaultValues={{ firstName: user.firstName, lastName: user.lastName, email: user.email }}>
+                                    <Form onSubmit={handleEdit} defaultValues={{ 
+                                        firstName: user.firstName, 
+                                        lastName: user.lastName, 
+                                        email: user.email,
+                                        periodStart: user?.periodStart || dayjs().format('YYYY'),
+                                        periodEnd: user?.periodEnd || dayjs().add(2, 'year').format('YYYY')
+                                    }}>
                                         <div className="row form-element">
                                             <div className="col">
-                                                <FormField name="firstName" label="Voornaam" type="text"/>
+                                                <FormField name="firstName" label="Voornaam"/>
                                             </div>
                                             <div className="col">
-                                                <FormField name="lastName" label="Achternaam" type="text"/>
+                                                <FormField name="lastName" label="Achternaam"/>
                                             </div>
                                         </div>
-                                        <FormField name="email" label="Email" type="text"/>
+                                        <div className="row form-element">
+                                            <div className="col">
+                                                <FormField name="periodStart" label="Start traject" type="number"/>
+                                            </div>
+                                            <div className="col">
+                                                <FormField name="periodEnd" label="Einde traject" type="number"/>
+                                            </div>
+                                        </div>
+                                        <FormField name="email" label="Email" type="email"/>
                                         <FormButton title="Edit"/>
                                         <Button title="Cancel" onClick={() => setEditMode(false)} />
                                     </Form> :

@@ -2,7 +2,6 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Modal, StudentCard, SectionFilter } from '../components';
 
-import studentsData from '../faker/students.json';
 
 export default () => {
     const { id } =  useParams()
@@ -23,14 +22,12 @@ export default () => {
             <p className="small label">academiejaar</p>
             <div className="flex-grid">
                 <div className="flex-grid__wrapper">
-                    {studentsData && studentsData.map(({ id, firstName, lastName, avatar }) =>
+                    {/* {studentsData && studentsData.map(s =>
                         <StudentCard
                             key={ id } 
-                            firstName={ firstName } 
-                            lastName={ lastName }
-                            avatar={ avatar }
+                            studentData={ s }
                         />
-                    )}
+                    )} */}
                 </div>
             </div>
             { id }
