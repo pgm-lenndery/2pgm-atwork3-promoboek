@@ -3,9 +3,10 @@ import './App.scss';
 import { BrowserRouter as Router } from "react-router-dom";
 import { ModalRoute, ModalContainer } from 'react-router-modal';
 import { useForm, FormProvider } from "react-hook-form";
+import Fade from 'react-reveal/Fade';
 
 import { AuthProvider, useAuth, useFirestoreQuery } from './firebase'
-import { Works, SectionFilter, SectionHeader, Section, ProtectedModalRoute, Loader, StudentCard, Fab, Anker, Container, StudentsList, Footer } from "./components";
+import { Works, SectionFilter, SectionHeader, Section, ProtectedModalRoute, Loader, StudentCard, Fab, Anker, Container, StudentsList, Footer, Hero } from "./components";
 import { ModalContext } from './contexts';
 import { ProjectsOverviewPage, StudentsOverviewPage, RegisterPage, AccountPage, UserNewProjectPage, ProjectDetailPage, ProjectDetailEdit, UserDetailPage } from './pages';
 
@@ -49,8 +50,7 @@ const AppWrapper = () => {
     return (
         <>
             <div className="App">
-                <header className="App-header">
-                </header>
+                <Hero />
                 <main>
                     <SectionHeader actionLabel="ontdek ze allemaal" to="/studenten">onze &amp;<br/>studenten</SectionHeader>
                     <Section spacing="y"> 

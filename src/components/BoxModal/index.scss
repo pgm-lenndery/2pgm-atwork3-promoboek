@@ -30,13 +30,13 @@
     &__wrapper {
         max-width: 90vw;
         min-width: 80vw;
-        min-height: 80vh;
+        max-height: 80vh;
         overflow: scroll;
     }
     
     &__scrollable {
         // max-height: calc(80vh - 2.3rem);
-        height: calc(80vh - (2.3rem + 2px));
+        max-height: calc(80vh - (2.3rem + 2px));
         overflow: scroll;
     }
     

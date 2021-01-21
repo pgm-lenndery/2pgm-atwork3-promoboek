@@ -28,7 +28,7 @@ export default () => {
                         { studentData.periodStart &&
                             <>
                                 <p className="small label">Traject</p>
-                                <p>{ studentData.periodStart } { studentData.periodEnd }</p>
+                                <p>{ studentData.periodStart } - { studentData.periodEnd }</p>
                             </>
                         }
                         {/* <Works data={ projectsData }/> */}

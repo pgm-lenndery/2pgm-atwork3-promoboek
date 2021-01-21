@@ -1,10 +1,12 @@
 import React from 'react';
 import { Container } from '../../components';
+import Fade from 'react-reveal/Fade';
 
 import './index.scss';
 
 export default ({ footerText }) => {
   return (
+    <Fade bottom>
       <div className="footer">
           <Container
             className="box--y"
@@ -25,5 +27,6 @@ export default ({ footerText }) => {
             </div>
           </Container>
       </div>
+    </Fade>
   )
 }

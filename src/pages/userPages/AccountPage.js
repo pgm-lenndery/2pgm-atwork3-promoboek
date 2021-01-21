@@ -10,7 +10,7 @@ export default () => {
     const { user, logout } = useAuth();
     const { getDownloadURL, state: { data: userAvatar = '' } } = useFirebaseStorage(user.avatar);
     const { uploadFile: uploadNewAvatar, state: { data: updatedUserAvatarData, status } } = useFirebaseStorage();
-    const { updateDocument } = useFirestoreCrud()
+    const { updateDocument, state: { error } } = useFirestoreCrud()
     const [ editMode, setEditMode ] = useState(false);
     const [ updatedAvatar, setUpdatedAvatar ] = useState();
     
@@ -18,12 +18,12 @@ export default () => {
         getDownloadURL();
     }, [])
 
-    const handleEdit = ({ email, ...otherData }) => {
+    const handleEdit = ({ email, avatar, ...otherData }) => {
         updateDocument({
             ...otherData
         }, `users/${ user.uid }`)
 
-        auth.currentUser.updateEmail(email);
+        // auth.currentUser.updateEmail(email);
         setEditMode(false);
     }
     
