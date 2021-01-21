@@ -1,5 +1,10 @@
 .container {
+    // padding: 3rem;
+    overflow: scroll;
+}
+
+.wrapper {
     display: flex;
-    padding: 3rem;
     gap: 3rem;
+    min-width: fit-content;
 }

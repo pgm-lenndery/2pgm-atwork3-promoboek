@@ -8,6 +8,11 @@
     &::selection {
         background-color: $purple500;
     }
+    
+    scrollbar-width: 0px;
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 .react-loader {

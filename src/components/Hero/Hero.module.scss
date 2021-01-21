@@ -1,0 +1,44 @@
+@import '../../scss/abstracts/';
+
+.marquee {
+    width: fit-content;
+    white-space: nowrap;
+    background-color: white;
+    color: black;
+    padding: 1rem 0;
+    user-select: none;
+}
+
+.header {
+    position: relative;
+    padding: 4rem 0;
+}
+
+.backgroundWrapper {
+    position: absolute;
+    @include positionStretch;
+    max-height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.background {
+    position: relative;
+    opacity: .4;
+    width: 700px;
+    left: 50%;
+}
+
+@media (min-width: 576px) {}
+
+@media (min-width: 768px) {}
+
+@media (min-width: 992px) {
+    .background {
+        left: 65%;
+        top: -10%;
+        width: 900px;
+    }
+}
+
+@media (min-width: 1200px) {}

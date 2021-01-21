@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container } from '../../components';
 import dayjs from 'dayjs';
+import Fade from 'react-reveal/Fade';
 
 import './index.scss';
 
@@ -10,6 +11,7 @@ export default ({ footerText }) => {
   const nextYear = dayjs(currentYear).add(1, 'year').format('YYYY');
 
   return (
+    <Fade bottom>
       <div className="footer">
           <Container
             className="box--y"
@@ -34,5 +36,6 @@ export default ({ footerText }) => {
             <p className="label small mb-0">ALLE RECHTEN VOORBEHOUDEN © ARTEVELDEHOGESCHOOL { currentYear } - { nextYear }</p>
           </Container>
       </div>
+    </Fade>
   )
 }

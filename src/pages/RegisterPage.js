@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import dayjs from 'dayjs';
+
 import { Form, FormField, Modal, FormFileUpload, FormButton } from '../components';
 import { useAuth, useFirebaseStorage, useFirestoreCrud, useLazyFirestoreQuery } from '../firebase';
 
@@ -35,7 +37,14 @@ export default () => {
         <Modal title="Registreren" subtitle="maak een account">
             {  registeringUserStatus === 'success' ?
                 <div>Loading</div> :
-                <Form onSubmit={handleRegistration} loading={ registeringUserStatus === 'loading' }>
+                <Form 
+                    onSubmit={handleRegistration} 
+                    loading={ registeringUserStatus === 'loading' }
+                    defaultValues={{
+                        periodStart: dayjs().format('YYYY'),
+                        periodEnd: dayjs().add(2, 'year').format('YYYY')
+                    }}
+                >
                     <FormFileUpload name="avatar" label="Avatar"/>
                     <div className="row form-element">
                         <div className="col">
@@ -43,6 +52,14 @@ export default () => {
                         </div>
                         <div className="col">
                             <FormField name="lastName" label="Achternaam"/>
+                        </div>
+                    </div>
+                    <div className="row form-element">
+                        <div className="col">
+                            <FormField name="periodStart" label="Start traject" type="number"/>
+                        </div>
+                        <div className="col">
+                            <FormField name="periodEnd" label="Einde traject" type="number"/>
                         </div>
                     </div>
                     <FormField type="email" name="email" label="Email"/>

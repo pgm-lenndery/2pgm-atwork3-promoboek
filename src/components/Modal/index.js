@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useLocation, useHistory, useParams } from 'react-router-dom';
 import { Minus, Plus, X } from 'react-feather';
 
 import './index.scss';
 
-export default ({ children, title = null, subtitle = null, afterHeaderComponents, beforeHeaderComponents, ignorePadding }) => { 
+export default ({ children, title = null, subtitle = null, afterHeaderComponents, beforeHeaderComponents, ignorePadding, crumbs }) => { 
     const { pathname } = useLocation();
     const pathnameSplit = pathname.replace('/', '').split('/');
+    
+    const generateCrumbs = (crumbArray = [], path) => {
+        console.log(crumbArray.length, crumbArray);
+        const lengthEqual = crumbArray.length === pathnameSplit.length;
+        console.log(lengthEqual);
+    }
+    
+    useEffect(() => {
+        generateCrumbs(crumbs, pathnameSplit);
+    }, [])
     
     /**
      * TODO: when minimalizing, save as tab on bottom with url as parameter
