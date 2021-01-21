@@ -32,6 +32,20 @@ $accent: #47277B;
     }
 }
 
+.default {
+    background-color: $accent;
+}
+
+.outline {
+    background-color: transparent;
+    
+    span {opacity: .8;}
+    
+    &:hover span {
+        opacity: 1;
+    }
+}
+
 .loading {
     background-color: transparent;
     

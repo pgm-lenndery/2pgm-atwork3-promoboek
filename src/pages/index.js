@@ -6,3 +6,4 @@ export { default as RegisterPage } from './RegisterPage';
 export { default as AccountPage } from './userPages/AccountPage';
 export { default as UserProjectsPage } from './userPages/UserProjectsPage';
 export { default as UserNewProjectPage } from './userPages/UserNewProjectPage';
+export { default as UserDetailPage } from './userPages/UserDetailPage';

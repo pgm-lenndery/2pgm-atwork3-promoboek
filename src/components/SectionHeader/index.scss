@@ -9,30 +9,30 @@
     &__title {
         flex: 1;
         padding: 1.5rem 0;
-        @include box('r');
         
         h2 {
             margin-bottom: 0;
-            font-size: clamp(1rem, 4rem, 4rem);
-            line-height: 3.5rem;
+            // font-size: clamp(1rem, 4rem, 4rem);
+            // line-height: 3.5rem;
         }
     }
     
     .action {
-        padding: 1.5rem 0;
+        padding: 0 0 1.5rem 0;
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
         align-items: center;
         
         &__label {
             @include textModern;
-            font-size: calc(1.3rem + 0.6vw);
+            font-size: 1.2rem;
             text-align: right;
         }
         
         &__icon svg {
-            width: 70px;
-            height: 70px;
+            --d: 40px;
+            width: var(--d);
+            height: var(--d);
             
             stroke-width: 1px;
             stroke-linecap: butt;
@@ -40,3 +40,32 @@
         }
     }
 }
+
+@media (min-width: 576px) {}
+
+@media (min-width: 768px) {
+    .sectionHeader {
+        row-gap: 3rem;
+        
+        &__title {
+            @include box('r');
+        }
+        
+        .action {
+            justify-content: flex-end;
+            padding: 1.5rem 0;
+            
+            &__label {
+                font-size: calc(1.3rem + 0.6vw);
+            }
+            
+            &__icon svg {
+                --d: 70px;
+            }
+        }
+    }
+}
+
+@media (min-width: 992px) {}
+
+@media (min-width: 1200px) {}

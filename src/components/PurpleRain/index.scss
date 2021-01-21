@@ -3,6 +3,7 @@
 .purpleRain {
     position: relative;
     display: block;
+    height: 100%;
     transition: var(--transition-prop) var(--transition-time) var(--transition-bezier);
     
     &::before {

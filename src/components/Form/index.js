@@ -5,7 +5,7 @@ import Loader from 'react-loader-spinner'
 import styles from './Form.module.scss';
 
 export default ({ children, onSubmit, loading = false, defaultValues = {}, onChange, className = '' }) => {
-    const { handleSubmit, setValue,  } = useFormContext();
+    const { handleSubmit, setValue } = useFormContext();
     
     useEffect(() => {
         Object.keys(defaultValues).forEach((v) => {

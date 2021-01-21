@@ -17,6 +17,7 @@ export default () => {
     const [ fileToUpload, setFileToUpload ] = useState();
 
     const handleEditProject = ({ projectUrl, gitUrl, academicYear, banner: [ bannerFile ], ...otherValues }) => {
+        console.log(otherValues)
         setFileToUpload(bannerFile);
         updateDocument({
             ...otherValues,
@@ -37,7 +38,6 @@ export default () => {
         const { banner, title, intro, description, tags} = projectData;
         return (
             <Modal>
-
               <Form onSubmit={ handleEditProject } loading={updateDocState === "loading"} defaultValues={{ banner: banner, title: title, intro: intro, description: description, tags: tags }}>
                 <FormFileUpload name="banner" label="Banner"/>
                 <FormField name="title" label="Project naam" />

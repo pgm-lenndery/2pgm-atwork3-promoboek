@@ -7,7 +7,6 @@ $accent: #47277B;
     margin-top: 1.8rem;
     padding: .6rem .3rem .6rem 1rem;
     width: fit-content;
-    background-color: $accent;
     border: 2px solid $accent;
     overflow: visible;
     white-space: nowrap;
@@ -19,7 +18,7 @@ $accent: #47277B;
         gap: .4rem;
         overflow: hidden;
         max-width: 100%;
-        opacity: 1;
+        // opacity: 1;
     }
     
     .indicator {
@@ -31,6 +30,25 @@ $accent: #47277B;
             width: 0;
         }
     }
+}
+
+.default {
+    background-color: $accent;
+}
+
+.outline {
+    background-color: transparent;
+    
+    span {opacity: .8;}
+    
+    &:hover span {
+        opacity: 1;
+    }
+}
+
+.disabled {
+    opacity: .6;
+    pointer-events: none;
 }
 
 .loading {

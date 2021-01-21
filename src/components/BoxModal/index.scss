@@ -1,7 +1,7 @@
 @import '../../scss/abstracts';
 
 .react-router-modal__modal {
-    transform: translate(-50%, calc(-50% - (2.3rem/2)));
+    transform: translate(-50%, calc(-50% + (2.3rem/2)));
 }
 
 .boxModal {
@@ -17,7 +17,7 @@
         background-color: black;
         @include box('all');
         z-index: -1;
-        transform: translate(-2.3rem, 2.3rem);
+        transform: translate(2.3rem, -2.3rem);
     }
     
     &__header {
@@ -31,12 +31,12 @@
         max-width: 90vw;
         min-width: 80vw;
         max-height: 80vh;
-        // min-height: 80vh;
         overflow: scroll;
     }
     
     &__scrollable {
-        max-height: calc(80vh - 2.3rem);
+        // max-height: calc(80vh - 2.3rem);
+        max-height: calc(80vh - (2.3rem + 2px));
         overflow: scroll;
     }
     
@@ -79,10 +79,9 @@
     
     &__actions {
         position: absolute;
-        top: 2.3rem;
-        left: -2.3rem;
+        top: -2.3rem;
+        left: 2.3rem;
         display: flex;
-        flex-direction: column;
         width: fit-content;
         background-color: black;
         z-index: 1;
@@ -93,11 +92,10 @@
             justify-content: center;
             width: 2.3rem;
             height: 2.3rem;
-            @include box('x');
-            @include box('b');
+            @include box('a');
             
-            &:first-child {
-                @include box('t');
+            &:not(:first-child) {
+                margin-left: -2px;
             }
 
         }
@@ -107,3 +105,35 @@
         border-top: none;
     }
 }
+
+@media (min-width: 576px) {}
+
+@media (min-width: 768px) {}
+
+@media (min-width: 992px) {
+    .react-router-modal__modal {
+        transform: translate(-50%, calc(-50% - (2.3rem/2)));
+    }
+    
+    .boxModal {
+        &::after {
+            transform: translate(-2.3rem, 2.3rem);
+        }
+        
+        &__actions {
+            top: 2.3rem;
+            left: -2.3rem;
+            flex-direction: column;
+            
+            .boxModal__action {            
+                &:not(:first-child) {
+                    margin-left: 0;
+                    margin-top: -2px;
+                }
+
+            }
+        }
+    }
+}
+
+@media (min-width: 1200px) {}
