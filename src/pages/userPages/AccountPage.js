@@ -46,7 +46,7 @@ export default () => {
             <Tabs>
                 <TabList>
                     <Tab>Account</Tab>
-                    <Tab>Projects</Tab>
+                    <Tab>Projecten</Tab>
                 </TabList>
 
                 <Wrapper>
@@ -81,14 +81,18 @@ export default () => {
                                             </div>
                                         </div>
                                         <FormField name="email" label="Email" type="email"/>
-                                        <FormButton title="Edit"/>
-                                        <Button title="Cancel" onClick={() => setEditMode(false)} />
+                                        <div className="btn-group">
+                                            <FormButton title="Opslaan"/>
+                                            <Button theme="outline" title="Wijzigen annuleren" onClick={() => setEditMode(false)} />
+                                        </div>
                                     </Form> :
                                     <>
                                         <h3 className="text--initial">{ user.firstName } { user.lastName }</h3>
                                         <p className="small label">{ user.email }</p>
-                                        <Button title="Account Aanpassen" onClick={() => setEditMode(true)} />
-                                        <Button title="Afmelden" onClick={logout} />
+                                        <div className="btn-group">
+                                            <Button title="Account aanpassen" onClick={() => setEditMode(true)} />
+                                            <Button theme="outline" title="Afmelden" onClick={logout} />
+                                        </div>
                                     </>
                                 }
                             </div>

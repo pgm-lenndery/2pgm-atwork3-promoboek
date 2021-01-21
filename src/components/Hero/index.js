@@ -18,19 +18,20 @@ export default () => {
                 </Section>
                 <Ticker mode="smooth">
                     {({ index }) => (
-                        <div className={ styles.marquee }>javascript<span class="word--joint">・</span>html<span class="word--joint">・</span>animation<span class="word--joint">・</span>webpack<span class="word--joint">・</span>adobe illustrator<span class="word--joint">・</span>react<span class="word--joint">・</span>typescript<span class="word--joint">・</span>wordpress<span class="word--joint">・</span>svg<span class="word--joint">・</span>git<span class="word--joint">・</span>sass<span class="word--joint">・</span>firebase<span class="word--joint">・</span>bootstrap<span class="word--joint">・</span>indexeddb<span class="word--joint">・</span>adobe xd</div>
+                        <div className={ styles.marquee }>javascript<span className="word--joint">・</span>html<span className="word--joint">・</span>animation<span className="word--joint">・</span>webpack<span className="word--joint">・</span>adobe illustrator<span className="word--joint">・</span>react<span className="word--joint">・</span>typescript<span className="word--joint">・</span>wordpress<span className="word--joint">・</span>svg<span className="word--joint">・</span>git<span className="word--joint">・</span>sass<span className="word--joint">・</span>firebase<span className="word--joint">・</span>bootstrap<span className="word--joint">・</span>indexeddb<span className="word--joint">・</span>adobe xd</div>
                     )}
                 </Ticker>
             </Fade>
             <Fade bottom>
-                <Section spacing="y">
+                <header className={ styles.header }>
                     <Container fluid>
-                        <header className="App-header">
-                            <h1 className="display-4">ontdek onze <br/>{ studentsAmount.length } studenten</h1>
+                            <h1 className="display-3">ontdek onze <br className="d-none d-lg-block"/>{ studentsAmount.length } studenten</h1>
                             <h5 className="label">Bekijk hun werk en wat hun drijft</h5>
-                        </header>
                     </Container>
-                </Section>
+                    <div className={ styles.backgroundWrapper }>
+                        <img className={ styles.background } src="https://pgmgent-1920-students.github.io/case1-pgm-website-baas-pgm-lenndery/src/images/pgm_branding/logos/logo_pgm_klein_wit.svg" alt=""/>
+                    </div>
+                </header>
             </Fade>
         </>
     )

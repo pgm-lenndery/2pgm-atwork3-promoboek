@@ -23,5 +23,6 @@
 }
 
 .box + .box {
-    border-top: none !important;
+    margin-top: -2px;
+    // border-top: none !important;
 }

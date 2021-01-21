@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import Fade from 'react-reveal/Fade';
 
 import { Container } from '..';
 import './index.scss';
@@ -24,20 +25,24 @@ export default ({ label: componentLabel = 'label unset', float = false, items, c
     }
     
     return (
-        <div className={`sectionFilter__wrapper box ${ (spacing && 'sectionFilter--spacing') }`}>
-            <Container theme="section-filter" className={`sectionFilter ${ (float && 'sectionFilter--float')}`} fluid>
-                    <div className="sectionFilter__label">{ componentLabel }</div>
-                    <div className="sectionFilter__options" ref={group}>{
-                        items.map((i, index) => {
-                            if (i[value] == null && !i[label]) throw new Error('One or more options in a SectionFilter have a value null, but no label')
-                            
-                            return <button key={index} className={`sectionFilter__option option btn ${i.checked && 'checked'}`} onClick={(e) => handleClick(e, i)}>
-                                <div className="option__label">{ i[label] || i[value] }</div>
-                                <div className="option__separator">・</div>
-                            </button>
-                        })
-                    }</div>
-            </Container>
+        <div className="box">
+            <Fade bottom> 
+                <div className={`sectionFilter__wrapper box ${ (spacing && 'sectionFilter--spacing') }`}>
+                    <Container theme="section-filter" className={`sectionFilter ${ (float && 'sectionFilter--float')}`} fluid>
+                            <div className="sectionFilter__label">{ componentLabel }</div>
+                            <div className="sectionFilter__options" ref={group}>{
+                                items.map((i, index) => {
+                                    if (i[value] == null && !i[label]) throw new Error('One or more options in a SectionFilter have a value null, but no label')
+                                    
+                                    return <button key={index} className={`sectionFilter__option option btn ${i.checked && 'checked'}`} onClick={(e) => handleClick(e, i)}>
+                                        <div className="option__label">{ i[label] || i[value] }</div>
+                                        <div className="option__separator">・</div>
+                                    </button>
+                                })
+                            }</div>
+                    </Container>
+                </div>
+            </Fade>
         </div>
     )
 }
